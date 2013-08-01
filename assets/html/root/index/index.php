@@ -4,9 +4,9 @@
 			<h1>JSBorn</h1>
 			<p class="lead">快速物件化您的JS，加速開發與管理</p>
 			<p>基於jQuery開發的輕量級框架(4kb)</p>
-			<button class="btn btn-large btn-success" href="#"> <i class="glyphicon glyphicon-download-alt"></i>
+			<a class="btn btn-large btn-success" href="https://github.com/tureki/jsborn/archive/v0.5-alpha.zip"> <i class="glyphicon glyphicon-download-alt"></i>
 				<span>Download v0.5a</span>
-			</button>
+			</a>
 		</div>
 	</div>
 </div>

@@ -1,0 +1,46 @@
+<h3 id="class-instance">定義物件</h3>
+<p>
+	載入jsborn後，您可以馬上用以下方式定義一個物件，以下範例定義一個名為
+	<code>org.jsborn.instance</code>
+	的物件。
+</p>
+<pre class="prettyprint linenums">
+JSB.cls("org.jsborn.instance", {
+	//當物件被JSB.create時，將會突發此函式
+	initialize: function() {
+
+		console.log("log","org.jsborn.instance initialize!");
+
+	}
+
+})
+</pre>
+<pre class="prettyprint">var _ns_instance = JSB.create("org.jsborn.instance");</pre>
+<div class="jsb-code-output">
+	<pre>org.jsborn.instace initialize!</pre>
+</div>
+<p>傳入初始化資料</p>
+<pre class="prettyprint linenums">
+...
+
+	initialize: function(obj) {
+
+		console.log(obj.name);
+
+	}
+
+...
+</pre>
+<pre class="prettyprint">var _ns_instance = JSB.create("org.jsborn.instance",{name:"hello world!"});</pre>
+<div class="jsb-code-output">
+	<pre>hello world!</pre>
+</div>
+<div class="jsb-callout jsb-callout-warning">
+	<h4>關於物件的命名</h4>
+	<p>
+		關於物件的命名
+		<code>org.jsborn.instance</code>
+		是會影響JSBorn動態載入class的位置，詳細可以查看
+		<a>JSBorn Import機制</a>
+	</p>
+</div>

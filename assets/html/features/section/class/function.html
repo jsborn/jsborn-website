@@ -1,0 +1,57 @@
+<h3 id="class-function">定義函式</h3>
+<p>您可以在在物件內，定義多個函式。</p>
+<a class="btn btn-primary btn-code-edit" target="_blank" href="http://jsfiddle.net/tureki/uXJLK/" title="編輯範例" alt="編輯範例">
+	<span class="glyphicon glyphicon-edit"></span>
+	編輯範例
+</a>
+<pre class="prettyprint linenums">
+JSB.cls("org.jsborn.instace", {
+
+	helloWorld:function(){
+		console.log("call:helloWorld");
+		this._call_private();
+	},
+
+	setData:function(str_data){
+		this.str_data = str_data;
+	},
+
+	getData:function(){
+		return this.str_data;
+	},
+
+	initialize: function(options) {
+
+	},
+
+	_call_private:function(){
+		console.log("call:_call_private");
+	}
+
+})
+</pre>
+<pre class="prettyprint">
+var _ns_instance = JSB.create("org.jsborn.instance");
+_ns_instance.helloWord();
+console.log(_ns_instance.getData());
+_ns_instance.setData("set data to class");
+console.log(_ns_instance.getData());
+</pre>
+<div class="jsb-code-output">
+<pre>
+call:helloWorld
+call:_call_private
+undefined
+set data to class
+</pre>
+</div>
+<div class="jsb-callout jsb-callout-warning">
+	<h4>關於公用函式與私有函式</h4>
+	<p>
+		在JSBorn上是沒有公用函式與私有函式，而作者單純是用
+		<code>下劃線法</code>
+		辨識私有函式，而用
+		<code>小駝峰式命名法</code>
+		來辨識公用函式
+	</p>
+</div>

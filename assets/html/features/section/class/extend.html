@@ -1,0 +1,104 @@
+<h3 id="class-extends">繼承物件</h3>
+<p>
+	你也可以用JSBorn定義的物件來實現繼承的功能：
+	<p>
+		<code>extend</code>
+		:繼承
+	</p>
+	<p>
+		<code>abstr</code>
+		:抽象
+	</p>
+	<p>
+		<code>single</code>
+		:單一實例/Singleton
+	</p>
+</p>
+<a class="btn btn-primary btn-code-edit" target="_blank" href="http://jsfiddle.net/tureki/Mf7a2/" title="編輯範例" alt="編輯範例">
+	<span class="glyphicon glyphicon-edit"></span>
+	編輯範例
+</a>
+<pre class="prettyprint linenums">
+JSB.cls("org.jsborn.parent", {
+
+	abstr:true,
+
+	myname:"i am parent",
+
+	parentMethod:function(){
+		console.log("call::parentMethod!");
+	},
+
+	initialize: function(options) {
+
+		console.log("org.jsborn.parent initialize!");
+
+	}
+
+});
+
+JSB.cls("org.jsborn.node", {
+	//繼承物件org.jsborn.parent
+	extend:"org.jsborn.parent",
+
+	single:true,
+
+	initialize: function(options) {
+
+		console.log("org.jsborn.node initialize!");
+
+	}
+
+});
+</pre>
+<pre class="prettyprint">
+var _ns_node = JSB.create("org.jsborn.node");
+_ns_node.parentMethod();
+console.log(_ns_node.myname);
+</pre>
+<div class="jsb-code-output">
+<pre>
+org.jsborn.node initialize!
+org.jsborn.parent initialize!
+call::parentMethod!
+i am parent
+</pre>
+</div>
+<p>
+	如果希望父層先初始化，則
+	<code>this.SUPER()</code>
+</p>
+<a class="btn btn-primary btn-code-edit" target="_blank" href="http://jsfiddle.net/tureki/Wj6E2/" title="編輯範例" alt="編輯範例">
+	<span class="glyphicon glyphicon-edit"></span>
+	編輯範例
+</a>
+<pre class="prettyprint linenums">
+...
+JSB.cls("org.jsborn.node", {
+	//繼承物件org.jsborn.parent
+	extend:"org.jsborn.parent",
+
+	initialize: function(options) {
+
+		this.SUPER()
+		...
+	}
+
+});
+</pre>
+<p>最後輸出如下:</p>
+<div class="jsb-code-output">
+<pre>
+org.jsborn.parent initialize!
+org.jsborn.node initialize!
+...
+</pre>
+</div>
+<div class="jsb-callout jsb-callout-warning">
+	<h4>關於繼承</h4>
+	<p>JSBorn支援無限繼承，不支援多重繼承，雖然技術上行，但作者認為會混亂，</p>
+	<p>
+		若繼承的物件沒有事先載入，JSBorn會根據所繼承的物件名字自動執行import的動作 ，詳細可見
+		<a>JSBorn Extend機制</a>
+	</p>
+</div>

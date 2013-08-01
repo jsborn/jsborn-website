@@ -1,0 +1,95 @@
+<div class="bs-docs-section">
+	<div class="page-header">
+		<h1 id="start">開始使用</h1>
+	</div>
+	<h3>使用方式</h3>
+	<p>準備好一切後，即可馬上開始使用。範例如下:</p>
+	<p>
+		<pre class="prettyprint linenums">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+	...
+	&lt;script src="jquery-1-10-2.js"&gt;&lt;/script&gt;
+	&lt;script src="jsborn.js"&gt;&lt;/script&gt;
+	...
+	&lt;script type="text/javascript"&gt;
+
+		JSB.cls("define.your.classname", {
+			initialize: function() {
+				console.log("helloworld!");
+			}
+		})
+
+	&lt;/script&gt;
+	...
+&lt;/html&gt;
+		</pre>
+	</p>
+	<p>快速定義您的物件，並且設定函式。範例如下:</p>
+	<a class="btn btn-primary btn-code-edit" target="_blank" href="http://jsfiddle.net/tureki/r89rE/" title="編輯範例" alt="編輯範例">
+		<span class="glyphicon glyphicon-edit"></span>
+		編輯範例
+	</a>
+	<p>
+		<pre class="prettyprint linenums">
+JSB.cls("define.your.classname", {
+    //define get
+    getData: function () {
+        return this.data;
+    },
+    //define set
+    setData: function (data) {
+        this.data = data;
+    },
+
+    initialize: function () {
+        console.log("define.your.classname initialize!");
+    }
+
+})
+//create class
+var _cls = JSB.create("define.your.classname");
+//set data
+_cls.setData("hello");
+//get data
+console.log("_cls.getData():" + _cls.getData());
+		</pre>
+	</p>
+	<p>
+		你也可以用以上的例子建立多個物件。範例如下:
+	</p>
+	<a class="btn btn-primary btn-code-edit" target="_blank" href="http://jsfiddle.net/tureki/r89rE/4/" title="編輯範例" alt="編輯範例">
+		<span class="glyphicon glyphicon-edit"></span>
+		編輯範例
+	</a>
+	<p>
+		<pre class="prettyprint linenums">
+...
+//class array
+var _ary_cls = [];
+
+for (var i = 0; i < 10; i++) {
+
+	var _cls = JSB.create("define.your.classname");
+
+	_cls.setData(i);
+
+	console.log(_cls.getData());
+	//push class in array 
+	_ary_cls.push(_cls);
+};
+//console index 2 data
+console.log(_ary_cls[2].getData());
+
+...
+		</pre>
+	</p>
+	<div class="jsb-callout jsb-callout-info">
+		<h4>關於JSBorn</h4>
+		<p>
+			您可以點此
+			<a href="./features/" target="_blank">JSBorn's Features</a>
+			了解更多關於JSBorn的功能
+		</p>
+	</div>
+</div>

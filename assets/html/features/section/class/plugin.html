@@ -1,0 +1,59 @@
+<h3 id="class-plugins">使用插件</h3>
+<p>你可以自己編寫或使用別人所提供的插件來擴充您所定義的物件</p>
+<p>
+	以下範例使用JSBorn內建插件
+	<code>jsborn.plugin.model</code>
+	來擴充您的物件
+</p>
+<a class="btn btn-primary btn-code-edit" target="_blank" href="http://jsfiddle.net/tureki/5g7t9/" title="編輯範例" alt="編輯範例">
+	<span class="glyphicon glyphicon-edit"></span>
+	編輯範例
+</a>
+<pre class="prettyprint linenums">
+JSB.cls("org.jsborn.instance", {
+	//使用jsborn內建插件
+	plugins:[
+		"jsborn.plugin.model"
+	],
+
+	initialize: function(options) {
+		//addModel函式是因為載入model才能使用。
+		//以下是model插件偵測資料一旦被改變則執行callback
+		this.addModel('key',{name:"hello"}).listener("mod",function(obj){
+
+			console.log("name change to: "+ obj.name);
+			
+		});
+
+	},
+
+	changeData:function(){
+		//
+		this.setModel("key",{name:"hello world"});
+
+	}
+
+});
+</pre>
+<pre class="prettyprint">
+var _ns_instance = JSB.create("org.jsborn.instance");
+_ns_instance.changeData();
+</pre>
+<div class="jsb-code-output">
+	<pre>name change to: hello world</pre>
+</div>
+<div class="jsb-callout jsb-callout-warning">
+	<h4>關於插件</h4>
+	<p>
+		若插件沒有事先載入，JSBorn會根據插件名字自動執行import的動作，詳細可見
+		<a>JSBorn Plugin機制</a>
+	</p>
+	<p>
+		若要了解如何編寫插件，詳細可見
+		<a>JSBorn Extend機制</a>
+	</p>
+	<p>
+		關於JSBorn提供的內建插件，詳細可見
+		<a>JSBorn</a>
+	</p>
+</div>

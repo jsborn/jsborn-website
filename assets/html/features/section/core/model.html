@@ -1,0 +1,65 @@
+<h3 id="core-model">Model物件</h3>
+<p>
+	<code>Model</code>
+	提供了簡單的資料偵測，例如:比對資料前後差異(目前Model還在擴充中...)
+</p>
+<p>以下範例:使用兩個物件比對之間的差異</p>
+<a class="btn btn-primary btn-code-edit" target="_blank" href="http://jsfiddle.net/tureki/9QJRr/" title="編輯範例" alt="編輯範例">
+	<span class="glyphicon glyphicon-edit"></span>
+	編輯範例
+</a>
+<pre class="prettyprint linenums">
+JSB.cls("org.jsborn.d", {
+	//載入channel物件
+	imports:["jsborn.core.model"],
+
+	initialize: function(options) {
+
+		var _obj_original = {
+			"name":"original",
+			"data":{
+				"age":20
+			}
+		}
+		//複製_obj_original
+		var _obj_change = jQuery.extend(true,{},_obj_original,"mod");
+		//修改資料
+		_obj_change.name = "change";
+		_obj_change.data.age = "21";
+		//使用model檢查改變過什麼
+		var _obj_diff = JSB.core.model.getObjtDiff(_obj_original,_obj_change,"mod");
+		//如果有改變
+		if(!jQuery.isEmptyObject(_obj_diff)){
+			//使用model取得改變的數值
+			var _str_name = JSB.core.model.getObjKey(_obj_diff,"name");
+			var _str_age = JSB.core.model.getObjKey(_obj_diff,"data.age");
+
+			console.log("name:"+_str_name);
+
+			console.log("age:"+_str_age);
+
+
+		}
+
+
+	}
+
+});
+</pre>
+<pre class="prettyprint">var _ns_d = JSB.create("org.jsborn.d");</pre>
+<div class="jsb-code-output">
+<pre>
+name:change
+age:21
+</pre>
+</div>
+<div class="jsb-callout jsb-callout-info">
+	<h4>關於Model</h4>
+	<p>
+		如果物件需要監聽物件資料改變<code>Model</code>，建議使用<code>jsborn.plugin.model</code>，關於<code>jsborn.plugin.model</code>的功能可查看 Model插件
+	</p>
+	<p>
+		關於<code>Model</code>的功能，你可以到此查看 Model物件 的API文件
+	</p>
+
+</div>

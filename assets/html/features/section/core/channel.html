@@ -1,0 +1,78 @@
+<h3 id="core-channel">Channel物件</h3>
+<p>
+	<code>Channel</code>
+	能讓物件加入不同的事件頻道，就如收音機接收電臺一樣，接收事件。
+</p>
+<p>
+	以下範例:建立3個無關係的物件，但是透過
+	<code>Channel</code>
+	來達到事件傳遞。
+</p>
+<a class="btn btn-primary btn-code-edit" target="_blank" href="http://jsfiddle.net/tureki/hd8PB/" title="編輯範例" alt="編輯範例">
+	<span class="glyphicon glyphicon-edit"></span>
+	編輯範例
+</a>
+<pre class="prettyprint linenums">
+JSB.cls("org.jsborn.a", {
+    //載入channel物件
+    imports: ["jsborn.core.channel"],
+
+    initialize: function (options) {
+        //讓此物件加入channel-01
+        JSB.core.channel.join('channel-01', this, function (e, data) {
+            console.log("i am org.jsborn.a :get channel-01 message!");
+        });
+
+    }
+
+});
+
+JSB.cls("org.jsborn.b", {
+    //載入channel物件
+    imports: ["jsborn.core.channel"],
+    
+    initialize: function (options) {
+        JSB.core.channel.join('channel-01', this, function (e, data) {
+            console.log("i am org.jsborn.b :get channel-01 message!");
+        });
+    }
+
+});
+
+JSB.cls("org.jsborn.c", {
+    //載入channel物件
+    imports: ["jsborn.core.channel"],
+
+    initialize: function (options) {
+        //傳送資料給在channel-01的物件
+        JSB.core.channel.send('channel-01', 'YOUR_DATA');
+
+        //讓此物件加入channel-02
+        JSB.core.channel.join('channel-02', this, function (e, data) {
+            console.log("i am org.jsborn.c :get channel-02 message!");
+        });
+    }
+
+});
+</pre>
+<pre class="prettyprint">
+var _ns_a = JSB.create("org.jsborn.a");
+var _ns_b = JSB.create("org.jsborn.b");
+var _ns_c = JSB.create("org.jsborn.c");
+//傳送資料給在channel-02的物件
+JSB.core.channel.send('channel-02','YOUR_DATA');
+</pre>
+<div class="jsb-code-output">
+<pre>
+i am org.jsborn.a :get channel-01 message!
+i am org.jsborn.b :get channel-01 message!
+i am org.jsborn.c :get channel-02 message!
+</pre>
+</div>
+<div class="jsb-callout jsb-callout-info">
+	<h4>關於Channel</h4>
+	<p>
+		<code>Channel</code>
+		還有很多好用的功能，你可以到此查看 Channel物件 的API文件
+	</p>
+</div>

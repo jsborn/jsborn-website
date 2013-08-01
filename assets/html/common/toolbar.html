@@ -1,6 +1,7 @@
 <div id="jsb-nav" class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container">
-		<a href="<?php echo DIR_ROOT; ?>" class="navbar-brand">JSBorn</a>
+
+		<a href="<?php if(DIR_ROOT!=""){ ?><?php echo DIR_ROOT; ?><?php }else{ echo "/"; } ?>" class="navbar-brand">JSBorn</a>
 		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>

@@ -1,0 +1,228 @@
+<h3 id="plugin-controller">Controller插件</h3>
+<p>
+	<code>Controller</code>
+	插件會擴充JSBorn原有的物件，讓物件更容易的與HTML溝通，只要透過HTML attribute 即可自動對DOM註冊事件，資料改變刷新等功能，而不需要每次對HTML綁定事件。
+</p>
+<p>
+	<code>Controller</code>
+	依賴
+	<code>jsborn.core.model</code>
+	和
+	<code>jsborn.plugin.model</code>
+</p>
+<p>範例(一):自動綁定事件</p>
+<a class="btn btn-primary btn-code-edit" target="_blank" href="http://jsfiddle.net/tureki/A443V/" title="編輯範例" alt="編輯範例">
+	<span class="glyphicon glyphicon-edit"></span>
+	編輯範例
+</a>
+<pre class="prettyprint linenums">
+...
+&lt;div id="controller-test"&gt;
+	&lt;div jsb-event="click:_click_cb"&gt;
+		please click me!
+	&lt;/div&gt;
+	&lt;input jsb-event="keyup:_keyup_cb"/&gt;
+&lt;/div&gt;
+...
+JSB.cls("org.jsborn.controller", {
+	//載入controller插件
+	plugins:["jsborn.plugin.controller"],
+	
+	initialize: function(options) {
+
+		var dd = this;
+		//對物件鎖定要控制的DOM
+		this.setRoot("#controller-test");
+		//一旦設定Root後即可對DOM自動綁定事件
+		this.registerEvent();
+
+	},
+	//這裡的"_click_cb"是對應HTML裡的jsb-event="click:_click_cb"
+	_click_cb:function(){
+
+		alert("_click_cb");
+		
+	},
+
+	_keyup_cb:function(e){
+
+		alert("_keyup_cb:"+e.keyCode);
+
+	}
+
+})
+</pre>
+<p>
+	<code>setRoot</code>
+	: 對物件鎖定要控制的DOM
+</p>
+<p>
+	<code>registerEvent</code>
+	:會自動搜尋ROOT ID DOM的
+	<code>jsb-event</code>
+	，
+	<code>click</code>
+	對應jQuery event 而
+	<code>_click_cb</code>
+	則是 event callback
+</p>
+<pre class="prettyprint">var _ns_a = JSB.create("org.jsborn.controller");</pre>
+<div class="jsb-code-output">
+	<pre>點擊"please click me!" or 在Input輸入文字 即可測試</pre>
+</div>
+<p>範例(二):整合上述例子，當物件資料改變時會更新HTML</p>
+<a class="btn btn-primary btn-code-edit" target="_blank" href="http://jsfiddle.net/tureki/gwYuG/" title="編輯範例" alt="編輯範例">
+	<span class="glyphicon glyphicon-edit"></span>
+	編輯範例
+</a>
+<pre class="prettyprint linenums">
+...
+
+&lt;div id="controller-test"&gt;
+    &lt;div&gt;your key in result : &lt;span jsb-data="key:name" &gt;&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;input jsb-event="keyup:_keyup_cb" /&gt;
+&lt;/div&gt;
+&lt;div id="controller-test2"&gt;
+    &lt;div&gt;your key in result : &lt;span jsb-data="key:name" &gt;&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;input jsb-event="keyup:_keyup_cb" /&gt;
+&lt;/div&gt;
+
+...
+
+JSB.cls("org.jsborn.controller", {
+    //載入controller插件
+    plugins: ["jsborn.plugin.controller"],
+
+    initialize: function (id) {
+
+        this.setRoot(id);
+
+        this.addModel("key", {
+            name: ""
+        });        
+
+        this.registerEvent();
+        
+        this.registerData();
+        
+    },
+
+    _keyup_cb: function (e) {
+        //因為回傳的是jQuery物件，所以可以從裡面取回此物件的作用域
+        var me = e.data.scope;
+        
+        me.setModel("key", {
+            name: "id" + me.getRoot() + "-" + e.keyCode
+        });
+
+    }
+
+})
+
+</pre>
+<pre class="prettyprint">
+		//傳入不同的ID
+JSB.create("org.jsborn.controller",'#controller-test');
+JSB.create("org.jsborn.controller",'#controller-test2');
+	</pre>
+<div class="jsb-code-output">
+	<pre>在input輸入即可看到效果！</pre>
+</div>
+<p>
+	<code>getRoot</code>
+	: 取得物件setRoot時的ID
+</p>
+<p>
+	<code>registerData</code>
+	:會自動搜尋ROOT ID DOM 的
+	<code>jsb-data</code>
+	，
+	<code>key</code>
+</p>
+<p>
+	<code>addModel</code>
+	:新增名為<code>key</code>的資料
+</p>
+<p>
+	<code>setModel</code>
+	:更新名為<code>key</code>的資料
+</p>
+<p>範例(三):在HTML內自動註冊物件，這有點抽象，建議看DEMO</p>
+<a class="btn btn-primary btn-code-edit" target="_blank" href="http://jsfiddle.net/tureki/sAJHq/" title="編輯範例" alt="編輯範例">
+	<span class="glyphicon glyphicon-edit"></span>
+	編輯範例
+</a>
+<pre class="prettyprint linenums">
+...
+&lt;div id=&quot;controller-test&quot;&gt;
+    &lt;div jsb-event=&quot;click:_click_cb&quot;&gt;please click me!&lt;/div&gt;
+    &lt;input jsb-event=&quot;keyup:_keyup_cb&quot; /&gt;
+    &lt;div jsb-cls=&quot;org.jsborn.controller.node&quot;&gt;
+        &lt;div jsb-event=&quot;click:_node_cb&quot;&gt;please click node!&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+...
+JSB.cls("org.jsborn.controller", {
+
+    plugins: ["jsborn.plugin.controller"],
+
+    initialize: function (options) {
+
+        this.setRoot("#controller-test");
+        //監聽如果註冊了class時的callback
+        this.addListener("controller.create", function (e,scope,element) {
+            //這個scope指的是 org.jsborn.controller.node
+            scope.setRoot(element);
+
+            scope.registerEvent();
+
+        });
+
+        this.registerEvent();
+
+        this.registerClass();
+
+    },
+
+    _click_cb: function () {
+
+        alert("_click_cb");
+
+    }
+
+})
+
+JSB.cls("org.jsborn.controller.node", {
+    
+    plugins: ["jsborn.plugin.controller"],
+    
+    initialize: function (options) {
+    },
+    
+    _node_cb: function (e) {
+
+        var scope = e.data.scope;
+
+        alert("_node_cb");
+
+    }
+    
+})
+
+JSB.create("org.jsborn.controller");
+</pre>
+<p>
+	<code>registerClass</code>
+	:會自動搜尋ROOT ID DOM 的
+	<code>jsb-cls</code>，
+	然後自動建立Class。
+</p>
+<div class="jsb-callout jsb-callout-info">
+	<h4>關於Controller</h4>
+	<p>
+		<code>Controller</code>
+		還有很多好用的功能，你可以到此查看 Controller物件 的API文件
+	</p>
+</div>

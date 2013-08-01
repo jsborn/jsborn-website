@@ -1,0 +1,124 @@
+<h3 id="class-event">物件事件</h3>
+<p>
+	您可以自訂事件來監聽你所定義的物件以達到callback的效果	
+</p>
+<p>
+	以下範例是監聽物件之間傳送事件
+</p>
+<a class="btn btn-primary btn-code-edit" target="_blank" href="http://jsfiddle.net/tureki/dQAx5/" title="編輯範例" alt="編輯範例">
+	<span class="glyphicon glyphicon-edit"></span>
+	編輯範例
+</a>
+<pre class="prettyprint linenums">
+JSB.cls("org.jsborn.node", {
+
+    triggerCallback: function (str_event) {
+        //傳送事件給監聽此物件的物件
+        this.dispatchEvent(str_event, this);
+    },
+
+    initialize: function (options) {
+
+    }
+
+})
+
+JSB.cls("org.jsborn.instance", {
+
+    getNode: function () {
+
+        return this._ns_node;
+
+    },
+
+    initialize: function (options) {
+
+        var dd = this;
+        //建立物件node
+        dd._ns_node = JSB.create("org.jsborn.node");
+        //對物件node監聽事件
+        dd._ns_node.addListener("iamcallback", this._node_callback);
+        //你可以對物件監聽多個事件
+        dd._ns_node.addListener("multievent", this._node_multievent);
+
+    },
+    //接送物件Node的iamcallback事件
+    _node_callback: function (e, scope) {
+        console.log("_node_callback!");
+        //移除事件
+        scope.removeListener("iamcallback");
+    },
+    //接送物件Node的multievent事件
+    _node_multievent: function (e, scope) {
+        console.log("_node_multievent!");
+        //移除事件
+        scope.removeListener("multievent");
+    }
+
+});
+</pre>
+<pre class="prettyprint">
+var _ns_instance = JSB.create("org.jsborn.instance");
+_ns_instance.getNode().triggerCallback("iamcallback");
+_ns_instance.getNode().triggerCallback("multievent");
+</pre>
+<div class="jsb-code-output">
+<pre>
+_node_callback!
+_node_multievent!
+</pre>
+</div>
+<p>
+	以下範例是使用一般callback
+</p>
+<a class="btn btn-primary btn-code-edit" target="_blank" href="http://jsfiddle.net/tureki/zEzt3/" title="編輯範例" alt="編輯範例">
+	<span class="glyphicon glyphicon-edit"></span>
+	編輯範例
+</a>
+<pre class="prettyprint linenums">
+JSB.cls("org.jsborn.node", {
+
+	triggerCallback:function(){
+		dd._func_cb();
+	},
+
+	initialize: function(options) {
+
+		dd._func_cb = options;
+
+	}
+
+})
+
+JSB.cls("org.jsborn.instance", {
+
+	...
+
+	initialize: function(options) {
+		
+		var dd = this;
+
+		dd._ns_node = CT.create("org.jsborn.node",function(){
+			console.log("_node_callback!");
+		});
+
+	}
+
+});
+</pre>
+<pre class="prettyprint">
+var _ns_instance = JSB.create("org.jsborn.instance");
+_ns_instance.getNode().triggerCallback();
+</pre>
+<div class="jsb-code-output">
+<pre>
+_node_callback!
+</pre>
+</div>
+<div class="jsb-callout jsb-callout-warning">
+	<h4>關於事件</h4>
+	<p>
+		<code>iamcallback</code>和<code>multievent</code>是作者隨意自訂的事件，表示事件是可以按照你所要的名字自訂，
+		但是物件有些名字是不可定義，詳細可看<a href="#">物件的事件</a>
+	</p>
+</div>

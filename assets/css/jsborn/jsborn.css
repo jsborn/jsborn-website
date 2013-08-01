@@ -1,0 +1,171 @@
+.jsborn ol.linenums {
+	margin: 0;
+}
+
+.jsborn .jsb-header {
+	background-color: #EEE;
+	margin: 50px 0 0 0;
+}
+
+.jsborn .jsb-header  h1 {
+	font-size: 64px;
+	line-height: 1;
+}
+
+.jsborn .jsb-header .container{
+	
+	padding: 40px 40px;
+}
+
+.jsborn .jsb-header .jsb-sub p{
+	font-size: 21px;
+	font-weight: 300;
+	line-height: 1.5;
+	color:#666;
+}
+
+.jsborn .jsb-header .jsb-download {
+	margin: 50px 0 0 0;
+	text-align: center;
+	background-color: #EEE;
+	/*background: url(../../img/bg.png) repeat;*/
+}
+
+.jsborn .jsb-header .jsb-download h1 {
+	font-size: 100px;
+	line-height: 1;
+}
+
+.jsborn .jsb-header .jsb-download .lead {
+	font-size: 24px;
+	line-height: 1.25;
+}
+
+.jsborn .jsb-header .jsb-download .btn {
+	font-size: 21px;
+	padding: 14px 24px;
+}
+
+.jsborn .jsb-footer{
+	padding-top: 40px;
+	padding-bottom: 30px;
+	margin-top: 80px;
+	text-align: center;
+	border-top: 1px solid #E5E5E5;
+	background-color: #F8F8F8;
+}
+
+.jsborn .jsb-footer p{
+	margin-bottom: 0;
+	color: #999;
+}
+
+.jsborn .jsb-social {
+	padding: 15px 20px;
+	color: #777;
+	background-color: #FAFAFA;
+	border-top: 1px solid #CCC;
+	border-bottom: 1px solid #E5E5E5;
+	text-align: center;
+}
+
+.jsborn .jsb-container{
+	margin-top: 20px;
+}
+
+.jsborn .jsb-sidebar.affix {
+	position: fixed;
+	top:50px;
+}
+
+.jsborn .jsb-sidebar .nav .nav {
+	/*display: none;*/
+	margin-bottom: 8px;
+}
+
+.jsborn .jsb-sidebar a {
+	width: 270px;
+}
+
+.jsborn .jsb-sidebar a {
+	color: #666;
+}
+
+.jsborn .jsb-sidebar .nav > .active > ul {
+	display: block;
+}
+
+.jsborn .jsb-sidebar .nav .nav > li > a {
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-left: 30px;
+	font-size: 90%;
+}
+
+.jsborn .jsb-sidebar .nav > .active > a, .jsb-sidebar .nav > .active:hover > a, .jsb-sidebar .nav > .active:focus > a {
+	font-weight: bold;
+	color:#2A6496;
+	background-color: #f0f7fd;
+	border-right: 1px solid #2A6496;
+}
+
+.jsborn .jsb-code-output {
+	position: relative;
+	margin: 15px 0;
+	padding: 39px 19px 14px;
+	background-color: white;
+	border: 1px solid #DDD;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+
+.jsborn .jsb-code-output::after {
+	content: "Result";
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	padding: 3px 7px;
+	font-size: 12px;
+	font-weight: bold;
+	background-color: whiteSmoke;
+	border-right: 1px solid #DDD;
+	border-bottom: 1px solid #DDD;
+	color: #9DA0A4;
+	-webkit-border-radius: 4px 0 4px 0;
+	-moz-border-radius: 4px 0 4px 0;
+	border-radius: 4px 0 4px 0;
+}
+
+.jsborn .prettyprint + .jsb-code-output {
+	margin-top: -25px;
+}
+
+.jsborn .jsb-callout {
+	margin: 20px 0;
+	padding: 15px 30px 15px 15px;
+	border-left: 5px solid #eee;
+}
+
+.jsborn .jsb-callout-warning {
+	background-color: #fefbed;
+	border-color: #f1e7bc;
+}
+
+.jsborn .jsb-callout-danger {
+	background-color: #fcf2f2;
+	border-color: #dFb5b4;
+}
+
+.jsborn .jsb-callout-info {
+	background-color: #f0f7fd;
+	border-color: #d0e3f0;
+}
+
+.jsborn .btn-code-edit{
+	position: absolute;
+	opacity: 0.8;
+	right: 0;
+	margin-right: 15px;
+	border-radius: 0px;
+}

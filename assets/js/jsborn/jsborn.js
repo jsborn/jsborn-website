@@ -32,7 +32,7 @@
 
 		event:{
 			on  : _s_e_o,
-			off : _s_e_f,
+			off : _s_e_f
 		},
 
 		data:{

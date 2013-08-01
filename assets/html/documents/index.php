@@ -13,9 +13,11 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="container">
-				<h2>COMMING SOON!</h2>
 				<p>
 					作者在努力製作中...
+				</p>
+				<p>
+					<img src="http://uuoinc.com/wp-content/uploads/2013/05/coming-soon.jpg" width="1170" height="939">
 				</p>
 			</div>
 		</div>

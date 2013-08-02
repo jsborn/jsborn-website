@@ -11,15 +11,10 @@
 <?php include DIR_BASE."/assets/html/common/social.html"; ?>
 <div id="jsb-index" class="jsb-container container">
 	<div class="row">
-		<div class="col-lg-12">
-			<div class="container">
-				<p>
-					作者在努力製作中...
-				</p>
-				<p>
-					<img src="http://uuoinc.com/wp-content/uploads/2013/05/coming-soon.jpg" width="1170" height="939">
-				</p>
-			</div>
+		<div class="col-lg-3">
+			<?php include "sidebar.html"; ?></div>
+		<div class="col-lg-9">
+			<?php include "section/section.php"; ?>
 		</div>
 	</div>
 </div>

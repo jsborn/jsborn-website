@@ -15,7 +15,9 @@
  */
 (function(window) {
 
-	var _a_ver = jQuery.fn.jquery.split('.');
+	var _q     = jQuery;
+
+	var _a_ver = _q.fn.jquery.split('.');
 
 	var _s_e_o = "on";
 
@@ -61,53 +63,7 @@
 				source:'',
 				parserURL:function(url){
 
-					var _str_url  = '';
-
-					if (url.match(/^(http|https):\/\//g)) {
-
-						var _str_domain = url 
-
-						_str_domain = _str_domain.match(/^(https|http):\/\/(.*?)\//g)[0].replace(/(https|http|:|\/)/g,'');
-
-						if(_str_domain!=window.location.hostname){
-
-							JSB.echo("error","imports need sample domain",url);
-
-						}
-
-						_str_url = url;
-
-
-					} else {
-
-						var _str_basename = url.replace(/\\/g, '/').replace(/.*\//, '');
-
-						for (var i = 0; i < JSB.config.importSetup.ext.length; i++) {
-
-							var _str_ext = JSB.config.importSetup.ext[i];
-
-							if (_str_basename.substr(_str_basename.length,-_str_ext.length) != _str_ext) {
-								
-								_str_url  = url.replace(/\./g, '/');
-								
-								if(url.match(/^jsborn\./g) == -1){
-									_str_url  = JSB.config.importSetup.library + _str_url + _str_ext;
-								}else{
-									_str_url  = JSB.config.importSetup.source + _str_url + _str_ext;
-								}
-								
-								break;
-
-							}else {
-								_str_url = url;
-
-							}
-
-						};
-
-					}
-
-					return _str_url;
+					return url;
 
 				}
 			}
@@ -116,25 +72,25 @@
 
 		addListener:function(str_event,func_cb,ns_scope){
 
-			jQuery(JSB)[JSB.event.on]('jsb.'+str_event,{scope:ns_scope},func_cb);
+			_q(JSB)[JSB.event.on]('jsb.'+str_event,{scope:ns_scope},func_cb);
 
 		},
 
-		create: function(class_name, options) {
+		create: function(str_name,obj_options,bol_trigger_off) {
 
 			if(JSB.config.createImport){
-				this._check_class(class_name);
+				this._check_class(str_name);
 			}
 
-			var _ns_cls = JSB.getClass(class_name);
+			var _ns_cls = JSB._get_class(str_name);
 
 			if(!_ns_cls){
-				JSB.echo("error","NO CLASS:"+class_name);
+				JSB.echo("error","NO CLASS:"+str_name);
 				return false;
 			}
 
 			if(_ns_cls.config.abstr){
-				JSB.echo("error","CLASS:ABSTR can't create",class_name);
+				JSB.echo("error","CLASS:ABSTR can't create",str_name);
 				return false;
 			}
 
@@ -143,15 +99,18 @@
 			}
 
 			if(_ns_cls.config.single&&_ns_cls.config.nodes.length>0){
-				JSB.echo("error","CLASS:SINGLE",class_name);
+				JSB.echo("error","CLASS:SINGLE",str_name);
 				return false;
 			}
 
-			var _ns = new _ns_cls["cls"](options);
+			var _ns = new _ns_cls["cls"](obj_options);
 
 			_ns_cls.config.nodes.push(_ns);
 
-			jQuery(JSB).triggerHandler('jsb.create',_ns);
+			if(!bol_trigger_off){
+				_q(JSB).triggerHandler('jsb.create',_ns);	
+			}
+			
 
 			return _ns
 
@@ -163,13 +122,7 @@
 				
 				if(console[str_type]){
 
-					var _ary_cb = [];
-					
-					for (var i = 1; i < arguments.length; i++) {
-						_ary_cb.push(arguments[i]);
-					};
-
-					console[str_type](_ary_cb);
+					console[str_type](arguments);
 
 				}else{
 
@@ -199,7 +152,7 @@
 
 			}
 
-			ns_class["config"] = jQuery.extend(ns_class["config"],{
+			ns_class["config"] = _q.extend(ns_class["config"],{
 				single:true,
 				abstr:false,
 				plugin:false,
@@ -224,59 +177,35 @@
 
 			var me = this;
 			//檢查是否已經被註冊
-			if(JSB.getPlugin(_str_name)){
+			if(me._get_plugin(_str_name)){
 
-				JSB.echo("log","Plugin: "+ns_class+" already register.");
+				me.echo("log","Plugin: "+ns_class+" already register.");
 				
-				return JSB.getPlugin(_str_name);
+				return me._get_plugin(_str_name);
 			
 			}
 			//檢查插件的依賴類
-			if(jQuery.isArray(_ary_depends)){
+			if(_q.isArray(_ary_depends)){
 
 				for (var i = 0; i < _ary_depends.length; i++) {
 					
 					if(!me._check_class(_ary_depends[i])){
-						JSB.echo("error","PLUGINS:"+_str_name+" depends CLASS:"+_ary_depends[i]+" not found");
+						me.echo("error","PLUGINS:"+_str_name+" depends CLASS:"+_ary_depends[i]+" not found");
 					}
 
 				};
 			}
 
-			ns_class["config"] = jQuery.extend(ns_class["config"],{
+			ns_class["config"] = _q.extend(ns_class["config"],{
 				single:true,
 				abstr:false,
 				plugin:true,
 				core:false
 			});
 
-			JSB.data.plugins[_str_name] = JSB.create(_str_name);
+			me.data.plugins[_str_name] = me.create(_str_name);
 
-			return JSB.data.plugins[_str_name];
-
-		},
-
-		getCore:function(_str_name){
-
-			var me = this;
-
-			if (me.data.cores[_str_name]) {
-				return me.data.cores[_str_name];
-			} else {
-				return false;
-			}
-
-		},
-
-		getClass: function(_str_name) {
-
-			var me = this;
-
-			if (me.data.clss[_str_name]) {
-				return me.data.clss[_str_name];
-			} else {
-				return false;
-			}
+			return me.data.plugins[_str_name];
 
 		},
 
@@ -285,18 +214,6 @@
 			var me = this;
 
 			return me.data.clss;
-
-		},
-
-		getPlugin: function(_str_name) {
-
-			var me = this;
-
-			if (me.data.plugins[_str_name]) {
-				return me.data.plugins[_str_name];
-			} else {
-				return false;
-			}
 
 		},
 
@@ -316,9 +233,9 @@
 				return true;
 			}
 
-			_str_url = JSB.config.importSetup.parserURL(_str_import);
+			_str_url = this._parser_url(_str_import);
 
-			jQuery.ajax({
+			_q.ajax({
 
 				url      : _str_url,
 				
@@ -350,7 +267,7 @@
 
 		removeListener:function(str_event){
 
-			jQuery(JSB).off('jsb.'+str_event);
+			_q(JSB).off('jsb.'+str_event);
 
 		},
 
@@ -358,7 +275,7 @@
 
 			var me = this;
 
-			jQuery.extend(true,me.config, obj)
+			_q.extend(true,me.config, obj)
 
 			return me.config;
 
@@ -386,7 +303,7 @@
 
 			var me = this;
 
-			if (!me.getClass(_str_cls)) {
+			if (!me._get_class(_str_cls)) {
 
 				return me.importClass(_str_cls);
 
@@ -410,11 +327,11 @@
 
 			var me = this;
 
-			JSB.cls = function(name, obj) {
+			me.cls = function(name, obj) {
 
-				if (me.getClass(name)) {
+				if (me._get_class(name)) {
 
-					JSB.echo("error","CLASS:'" + name + "' define again");
+					me.echo("error","CLASS:'" + name + "' define again");
 
 					return true;
 
@@ -426,31 +343,31 @@
 
 					if (_str_extend) {
 
-						JSB._check_class(_str_extend);
+						me._check_class(_str_extend);
 
-						jQuery.extend(
+						_q.extend(
 							_jsb_cls.prototype, 
-							JSB.cls.prototype, 
-							JSB.getClass(_str_extend)["cls"].prototype, 
+							me.cls.prototype, 
+							me._get_class(_str_extend)["cls"].prototype, 
 							obj
 						);
 
 					}
 
-					var _ns_class = me.getClass(name);
+					var _ns_class = me._get_class(name);
 
 					obj.plugins = obj.plugins?obj.plugins:[];
 
 					this.plugins = this.plugins?this.plugins:[];
 
-					this.plugins = jQuery.merge(this.plugins, obj.plugins);
+					this.plugins = _q.merge(this.plugins, obj.plugins);
 
 					if(!_ns_class.config.plugin&&!_ns_class.config.core){
 
-						this.plugins = jQuery.merge(this.plugins,JSB.config.extendPlugins);
+						this.plugins = _q.merge(this.plugins,me.config.extendPlugins);
 						var _ary_result = [];
-						jQuery.each(this.plugins, function(i, e) {
-							if (jQuery.inArray(e, _ary_result) == -1){
+						_q.each(this.plugins, function(i, e) {
+							if (_q.inArray(e, _ary_result) == -1){
 								_ary_result.push(e);
 							}
 						});
@@ -484,7 +401,7 @@
 
 				};
 
-				jQuery.extend(_jsb_cls.prototype, JSB.cls.prototype, obj);
+				_q.extend(_jsb_cls.prototype, me.cls.prototype, obj);
 
 				if(obj.single!==true){
 					obj.single = false;
@@ -510,7 +427,7 @@
 
 			};
 
-			JSB.cls.prototype = {
+			me.cls.prototype = {
 
 				extend: '',
 
@@ -528,9 +445,9 @@
 
 						for (var i = 0; i < _ary_plugin.length; i++) {
 							
-							JSB._check_class(_ary_plugin[i]);
+							me._check_class(_ary_plugin[i]);
 
-							_ns_plugin = JSB.getClass(_ary_plugin[i])["cls"].prototype;
+							_ns_plugin = me._get_class(_ary_plugin[i])["cls"].prototype;
 
 							this._ary_plugin.push(_ary_plugin[i]);
 
@@ -540,11 +457,11 @@
 
 						for (var i = 0; i < this._ary_plugin.length; i++) {
 							
-							_ns_plugin = JSB.getClass(this._ary_plugin[i])["cls"].prototype;
+							_ns_plugin = me._get_class(this._ary_plugin[i])["cls"].prototype;
 							
-							jQuery.extend(
+							_q.extend(
 								jsb_cls.prototype, 
-								JSB.getPlugin(this._ary_plugin[i]).getPrototype()
+								me._get_plugin(this._ary_plugin[i]).getPrototype()
 							);
 
 							_ns_plugin.initialize.call(this);
@@ -565,7 +482,7 @@
 							
 							var _str_cls = _ary_depends[i];
 
-							var _ns_cls = JSB.getClass(_str_cls);
+							var _ns_cls = JSB._get_class(_str_cls);
 							
 							if(!_ns_cls.config.plugin){
 								continue;
@@ -593,7 +510,7 @@
 
 						this._ary_extend.push(scope.extend);
 
-						var _ns_cls = JSB.getClass(_str_extend)["cls"];
+						var _ns_cls = JSB._get_class(_str_extend)["cls"];
 
 						if (_ns_cls.prototype.extend) {
 
@@ -629,7 +546,7 @@
 
 						if (_str_extend) {
 
-							var _proto_class = JSB.getClass(_str_extend)["cls"].prototype;
+							var _proto_class = JSB._get_class(_str_extend)["cls"].prototype;
 
 							this._count++;
 
@@ -656,7 +573,7 @@
 						return true;
 					}
 
-					var _ns_cls = JSB.getClass(this._name);
+					var _ns_cls = JSB._get_class(this._name);
 
 					for (var i = 0; i < _ns_cls.config.nodes.length; i++) {
 						if(_ns_cls.config.nodes[i]==this){
@@ -664,9 +581,9 @@
 						}
 					};
 
-					jQuery(this).triggerHandler('cls.destroy',this);
+					_q(this).triggerHandler('cls.destroy',this);
 
-					jQuery(JSB).triggerHandler('jsb.destroy',this);
+					_q(JSB).triggerHandler('jsb.destroy',this);
 
 					this._destroy = true;
 
@@ -676,24 +593,112 @@
 
 				addListener:function(str_event,func_cb,ns_scope){
 
-					jQuery(this)[JSB.event.on]('cls.'+str_event,{scope:ns_scope},func_cb);
+					_q(this)[JSB.event.on]('cls.'+str_event,{scope:ns_scope},func_cb);
 
 				},
 
 				dispatchEvent:function(str_event,obj_data){
 
-					jQuery(this).triggerHandler('cls.'+str_event,this,obj_data);
+					_q(this).triggerHandler('cls.'+str_event,this,obj_data);
 
 				},
 
 				removeListener:function(str_event){
 
-					jQuery(this)[JSB.event.off]('cls.'+str_event);
+					_q(this)[JSB.event.off]('cls.'+str_event);
 
 				},				
 
 				initialize: function() {}
 
+			}
+
+		},
+
+		_parser_url:function(url){
+
+			var _str_url  = '';
+
+			if (url.match(/^(http|https):\/\//g)) {
+
+				var _str_domain = url 
+
+				_str_domain = _str_domain.match(/^(https|http):\/\/(.*?)\//g)[0].replace(/(https|http|:|\/)/g,'');
+
+				if(_str_domain!=window.location.hostname){
+
+					JSB.echo("error","imports need sample domain",url);
+
+				}
+
+				_str_url = url;
+
+
+			} else {
+
+				var _str_basename = url.replace(/\\/g, '/').replace(/.*\//, '');
+
+				for (var i = 0; i < JSB.config.importSetup.ext.length; i++) {
+
+					var _str_ext = JSB.config.importSetup.ext[i];
+
+					if (_str_basename.substr(_str_basename.length,-_str_ext.length) != _str_ext) {
+						
+						_str_url  = url.replace(/\./g, '/');
+						
+						if(url.match(/^jsborn\./g) == -1){
+							_str_url  = JSB.config.importSetup.source + _str_url + _str_ext;
+						}else{
+							_str_url  = JSB.config.importSetup.library + _str_url + _str_ext;
+						}
+						
+						break;
+
+					}else {
+						_str_url = url;
+
+					}
+
+				};
+
+			}
+
+			return _str_url;
+
+		},
+
+		_get_core:function(_str_name){
+
+			var me = this;
+
+			if (me.data.cores[_str_name]) {
+				return me.data.cores[_str_name];
+			} else {
+				return false;
+			}
+
+		},
+
+		_get_class: function(_str_name) {
+
+			var me = this;
+
+			if (me.data.clss[_str_name]) {
+				return me.data.clss[_str_name];
+			} else {
+				return false;
+			}
+
+		},
+
+		_get_plugin: function(_str_name) {
+
+			var me = this;
+
+			if (me.data.plugins[_str_name]) {
+				return me.data.plugins[_str_name];
+			} else {
+				return false;
 			}
 
 		}

@@ -8,7 +8,7 @@ JSB.cls("org.jsborn.common", {
 				top: function() {
 
 					var _number = parseInt(jQuery('#jsb-index').css("margin-top"));
-
+					console.log(jQuery('#jsb-index').position().top);
 					return (this.top = jQuery('#jsb-index').position().top + _number - jQuery('#jsb-nav').height())
 
 				}

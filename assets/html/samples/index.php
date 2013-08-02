@@ -17,7 +17,7 @@
 					作者在努力製作中...
 				</p>
 				<p>
-					<img src="http://uuoinc.com/wp-content/uploads/2013/05/coming-soon.jpg" width="1170" height="939">
+					<img src="http://uuoinc.com/wp-content/uploads/2013/05/coming-soon.jpg"  width="100%" height="100%">
 				</p>
 			</div>
 		</div>

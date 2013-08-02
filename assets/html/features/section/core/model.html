@@ -22,12 +22,12 @@ JSB.cls("org.jsborn.d", {
 			}
 		}
 		//複製_obj_original
-		var _obj_change = jQuery.extend(true,{},_obj_original,"mod");
+		var _obj_change = jQuery.extend(true,{},_obj_original);
 		//修改資料
 		_obj_change.name = "change";
 		_obj_change.data.age = "21";
 		//使用model檢查改變過什麼
-		var _obj_diff = JSB.core.model.getObjtDiff(_obj_original,_obj_change,"mod");
+		var _obj_diff = JSB.core.model.getObjtDiff(_obj_original,_obj_change,"modify");
 		//如果有改變
 		if(!jQuery.isEmptyObject(_obj_diff)){
 			//使用model取得改變的數值

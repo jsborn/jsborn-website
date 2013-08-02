@@ -1,0 +1,169 @@
+<h3 id="class-methods">Method</h3>
+<p>Instance Method</p>
+<div>
+	<table class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<th width="30%">Name</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tr>
+			<td>addListener(event,callback,scope)</td>
+			<td>
+				<p>監聽物件的事件</p>
+				<p>
+					<table class="table table-bordered ">
+						<thead>
+							<tr>
+								<th>Parameters</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<ul>
+										<li>
+											<p>
+												<code>event</code>
+												: (String) <label class="label label-danger">require</label>
+											</p>
+											<p>事件的名字</p>
+										</li>
+										<li>
+											<p>
+												<code>callback</code>
+												: (Function) <label class="label label-danger">require</label>
+											</p>
+											<p>回调函数</p>
+										</li>
+										<li>
+											<p>
+												<code>scope</code>
+												: (Object/Class)
+											</p>
+											<p>作用域</p>
+										</li>
+									</ul>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+
+			</td>
+		</tr>
+		<tr>
+			<td>destroy()</td>
+			<td>
+				<p>銷毀物件，讓系統 GC回送 該物件</p>
+				<p>
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>Dispatch Event / 觸發事件</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<code>destroy</code>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+				<p>
+					<table class="table table-bordered ">
+						<thead>
+							<tr>
+								<th>Returns</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<code>Class</code>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+			</td>
+		</tr>
+		<tr>
+			<td>dispatchEvent(event,object)</td>
+			<td>
+				<p>觸發事件</p>
+				<p>
+					<table class="table table-bordered ">
+						<thead>
+							<tr>
+								<th>Parameters</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<ul>
+										<li>
+											<p>
+												<code>event</code>
+												: (String) <label class="label label-danger">require</label>
+											</p>
+											<p>事件的名字</p>
+										</li>
+										<li>
+											<p>
+												<code>object</code>
+												: (Object/Class)
+											</p>
+											<p>傳送的資料</p>
+										</li>
+									</ul>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+			</td>
+		</tr>
+		<tr>
+			<td>removeListener(event)</td>
+			<td>
+				<p>移除監聽物件的事件</p>
+				<p>
+					<table class="table table-bordered ">
+						<thead>
+							<tr>
+								<th>Parameters</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<ul>
+										<li>
+											<p>
+												<code>event</code>
+												: (String) <label class="label label-danger">require</label>
+											</p>
+											<p>事件的名字</p>
+										</li>
+									</ul>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+
+			</td>
+		</tr>
+		<tr>
+			<td>SUPER()</td>
+			<td>
+				<p>呼叫父層初始化（有繼承物件才需要使用）</p>
+			</td>
+		</tr>
+	</table>
+</div>

@@ -1,0 +1,43 @@
+<h3 id="jsb-properties">Properties</h3>
+<p>JSB Properties</p>
+<div>
+	<table class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<th style="width: 100px;">Name</th>
+				<th style="width: 100px;">type</th>
+				<th>description</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>version</td>
+				<td>String</td>
+				<td>JSBorn 目前版本號 </td>
+			</tr>
+			<tr>
+				<td>event</td>
+				<td>Object</td>
+				<td>
+					<p>jQuery Event 事件，兼容jQuery 1.7以下版本的變數</p>
+					<p>jQuery >= 1.7 :
+						<pre><code>{on:"on",off:"off"}</code></pre>
+					</p>
+					<p>jQuery < 1.7  :
+						<pre><code>{on:"bind",off:"unbind"}</code></pre>
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<td>config</td>
+				<td>Object</td>
+				<td>
+					<p>JSB 的設定</p>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<pre class="prettyprint linenums">
+alert("Version:"+JSB.version);
+</pre>

@@ -73,10 +73,7 @@
 	margin-top: 20px;
 }
 
-.jsborn .jsb-sidebar.affix {
-	position: fixed;
-	top:50px;
-}
+
 
 .jsborn .jsb-sidebar .nav .nav {
 	/*display: none;*/
@@ -84,7 +81,7 @@
 }
 
 .jsborn .jsb-sidebar a {
-	width: 270px;
+	/*width: 270px;*/
 }
 
 .jsborn .jsb-sidebar a {
@@ -168,4 +165,43 @@
 	right: 0;
 	margin-right: 15px;
 	border-radius: 0px;
+}
+
+
+/* Responsive variations
+-------------------------------------------------- */
+
+@media screen and (max-width: 480px) {
+
+}
+
+@media screen and (min-width: 768px) {
+
+	.jsborn .jsb-sidebar.affix {
+		position: static;
+	}
+
+}
+
+@media screen and (min-width: 992px) {
+
+	.jsborn .jsb-sidebar.affix {
+		position: fixed;
+		top:50px;
+	}
+
+	.jsborn .jsb-sidebar.affix,
+	.jsborn .jsb-sidebar.affix-bottom {
+		width: 213px;
+	}
+
+}
+
+@media screen and (min-width: 1200px) {
+
+	.jsborn .jsb-sidebar.affix,
+	.jsborn .jsb-sidebar.affix-bottom {
+		width: 270px;
+	}
+
 }

@@ -32,8 +32,8 @@
 				console:true,
 				createImport :true,
 				importSetup:{
-					library:'<?php echo DIR_ROOT; ?>/assets/js/jsborn/',
-					source:'<?php echo DIR_ROOT; ?>/assets/js/'
+					library:'<?php echo DIR_ROOT; ?>/assets/js/',
+					source:'<?php echo DIR_ROOT; ?>/assets/js/jsborn/'
 				}
 			});
 

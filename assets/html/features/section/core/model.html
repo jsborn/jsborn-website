@@ -1,4 +1,4 @@
-<h3 id="core-model">Model物件</h3>
+<h3 id="core-model">Model物件 <code>jsborn.core.model</code></h3>
 <p>
 	<code>Model</code>
 	提供了簡單的資料偵測，例如:比對資料前後差異(目前Model還在擴充中...)
@@ -10,39 +10,39 @@
 </a>
 <pre class="prettyprint linenums">
 JSB.cls("org.jsborn.d", {
-	//載入channel物件
-	imports:["jsborn.core.model"],
+    //載入channel物件
+    imports: ["jsborn.core.model"],
 
-	initialize: function(options) {
+    initialize: function (options) {
 
-		var _obj_original = {
-			"name":"original",
-			"data":{
-				"age":20
-			}
-		}
-		//複製_obj_original
-		var _obj_change = jQuery.extend(true,{},_obj_original);
-		//修改資料
-		_obj_change.name = "change";
-		_obj_change.data.age = "21";
-		//使用model檢查改變過什麼
-		var _obj_diff = JSB.core.model.getObjtDiff(_obj_original,_obj_change,"modify");
-		//如果有改變
-		if(!jQuery.isEmptyObject(_obj_diff)){
-			//使用model取得改變的數值
-			var _str_name = JSB.core.model.getObjKey(_obj_diff,"name");
-			var _str_age = JSB.core.model.getObjKey(_obj_diff,"data.age");
+        var _obj_original = {
+            "name": "original",
+                "data": {
+                "age": 20
+            }
+        }
+        //複製_obj_original
+        var _obj_change = jQuery.extend(true, {}, _obj_original, "modify");
+        //修改資料
+        _obj_change.name = "change";
+        _obj_change.data.age = "21";
+        //使用model檢查改變過什麼
+        var _obj_diff = JSB.core.model.getObjtDiff(_obj_original, _obj_change, "modify");
+        //如果有改變
+        if (!jQuery.isEmptyObject(_obj_diff)) {
+            //使用model取得改變的數值
+            var _str_name = JSB.core.model.getObjKey(_obj_diff, "name");
+            var _str_age = JSB.core.model.getObjKey(_obj_diff, "data.age");
 
-			console.log("name:"+_str_name);
+            console.log("name:" + _str_name);
 
-			console.log("age:"+_str_age);
-
-
-		}
+            console.log("age:" + _str_age);
 
 
-	}
+        }
+
+
+    }
 
 });
 </pre>

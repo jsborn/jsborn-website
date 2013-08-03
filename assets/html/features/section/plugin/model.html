@@ -1,4 +1,4 @@
-<h3 id="plugin-model">Model插件</h3>
+<h3 id="plugin-model">Model插件 <code>jsborn.plugin.model</code></h3>
 <p>
 	<code>Model</code>
 	插件會擴充JSBorn原有的物件，讓物件對設定的資料監聽事件，例如：資料改變時收到通知等功能。
@@ -29,24 +29,34 @@
 &lt;button id=&quot;btn4&quot; class=&quot;btn btn-block btn-warning&quot;&gt;del data&lt;/button&gt;
 ...
 JSB.cls("org.jsborn.model", {
-    //載入controller插件
+    
     plugins: ["jsborn.plugin.model"],
 
     initialize: function (options) {
 
-        jQuery('#btn').on('click', {scope: this}, this._click_cb);
+        jQuery('#btn').on('click', {
+            scope: this
+        }, this._click_cb);
 
-        jQuery('#btn2').on('click', {scope: this}, this._click_cb2);
+        jQuery('#btn2').on('click', {
+            scope: this
+        }, this._click_cb2);
 
-        jQuery('#btn3').on('click', {scope: this}, this._click_cb3);
+        jQuery('#btn3').on('click', {
+            scope: this
+        }, this._click_cb3);
 
-        jQuery('#btn4').on('click', {scope: this}, this._click_cb4);
+        jQuery('#btn4').on('click', {
+            scope: this
+        }, this._click_cb4);
 
-        this.addModel("name-data", {name: 'hello'}).listener("modify", this._modify, this);
+        this.addModel("name-data", {
+            name: 'hello'
+        }).addListener("model-modify", this._modify, this);
 
-        this.getModel("name-data").listener("add", this._add, this);
+        this.getModel("name-data").addListener("model-add", this._add, this);
 
-        this.getModel("name-data").listener("del", this._del, this);
+        this.getModel("name-data").addListener("model-del", this._del, this);
     },
 
     _click_cb: function (e) {
@@ -62,36 +72,31 @@ JSB.cls("org.jsborn.model", {
         _obj_data.name = 'hello';
         scope.setModel("name-data", _obj_data);
     },
-
     _click_cb3: function (e) {
         var scope = e.data.scope;
         var _obj_data = scope.getModel("name-data").getData();
         _obj_data.age = 15;
         scope.setModel("name-data", _obj_data);
     },
-
     _click_cb4: function (e) {
         var scope = e.data.scope;
         var _obj_data = scope.getModel("name-data").getData();
         delete _obj_data.name;
         scope.setModel("name-data", _obj_data);
     },
-
-    _add: function (data) {
+    _add: function (e,scope,data) {
         console.log("add", data);
         for (key in data) {
             jQuery('#txt-data').html(key + ":" + data[key]);
         }
     },
-
-    _del: function (data) {
+    _del: function (e,scope,data) {
         console.log("delete", data);
         for (key in data) {
             jQuery('#txt-del').html(key);
         }
     },
-
-    _modify: function (data) {
+    _modify: function (e,scope,data) {
         console.log("_modify", data);
         jQuery('#txt').html(data.name);
     }

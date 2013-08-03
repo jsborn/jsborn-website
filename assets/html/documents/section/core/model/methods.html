@@ -1,0 +1,190 @@
+<h3 id="jsb-core-model-methods">Method</h3>
+<p>Channel 註冊在 <code>JSB.core.model</code> ， 呼叫如 <code>JSB.core.model.getObjKey()</code></p>
+<div>
+	<table class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<th width="30%">Name</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tr>
+			<td>getObjKey(obj,key)</td>
+			<td>
+				<p>對目標Object資料取得資料</p>
+				<p>
+					<table class="table table-bordered ">
+						<thead>
+							<tr>
+								<th>Parameters</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<ul>
+										<li>
+											<p>
+												<code>obj</code>
+												: (Object)
+												<label class="label label-danger">require</label>
+											</p>
+											<p>目標Object</p>
+										</li>
+										<li>
+											<p>
+												<code>key</code>
+												: (String)
+												<label class="label label-danger">require</label>
+											</p>
+											<p>搜尋的key</p>
+										</li>
+									</ul>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+				<p>
+					<table class="table table-bordered ">
+						<thead>
+							<tr>
+								<th>Example</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<pre>
+										var obj = {
+											a:{
+												b:{
+													name:"helloworld!"
+												}
+											}
+										}
+
+										alert(JSB.core.model.getObjKey(obj,"a.b.name"));
+									</pre>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+				<p>
+					<table class="table table-bordered ">
+						<thead>
+							<tr>
+								<th>Returns</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<code>Misc</code>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+			</td>
+		</tr>
+		<tr>
+			<td>getObjtDiff(obj_org,obj_mod,type)</td>
+			<td>
+				<p>比對兩個Object資料的不同之處</p>
+				<p>
+					<table class="table table-bordered ">
+						<thead>
+							<tr>
+								<th>Parameters</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<ul>
+										<li>
+											<p>
+												<code>obj_org</code>
+												: (Object)
+												<label class="label label-danger">require</label>
+											</p>
+											<p>原始資料</p>
+										</li>
+										<li>
+											<p>
+												<code>obj_mod</code>
+												: (Object)
+												<label class="label label-danger">require</label>
+											</p>
+											<p>修改資料</p>
+										</li>
+										<li>
+											<p>
+												<code>type</code>
+												: (String)
+												可以設定 <code>add</code> ，<code>del</code>，<code>modify</code>，<code>all</code>
+											</p>
+											<p>比對的類型</p>
+										</li>
+									</ul>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+				<p>
+					<table class="table table-bordered ">
+						<thead>
+							<tr>
+								<th>Example</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<pre>
+										var obj_org = {
+											a:{
+												b:{
+													name:"hello!"
+												}
+											}
+										}
+
+										var obj_mod = {
+											a:{
+												b:{
+													name:"helloworld!"
+												}
+											}
+										}
+
+										console.log(JSB.core.model.getObjtDiff(obj_org,obj_mod,"modify"));
+									</pre>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+				<p>
+					<table class="table table-bordered ">
+						<thead>
+							<tr>
+								<th>Returns</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<code>Misc</code>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+			</td>
+		</tr>
+	</table>
+</div>

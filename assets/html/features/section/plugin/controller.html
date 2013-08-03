@@ -1,4 +1,4 @@
-<h3 id="plugin-controller">Controller插件</h3>
+<h3 id="plugin-controller">Controller插件 <code>jsborn.plugin.controller</code></h3>
 <p>
 	<code>Controller</code>
 	插件會擴充JSBorn原有的物件，讓物件更容易的與HTML溝通，只要透過HTML attribute 即可自動對DOM註冊事件，資料改變刷新等功能，而不需要每次對HTML綁定事件。
@@ -119,7 +119,7 @@ JSB.cls("org.jsborn.controller", {
 
     }
 
-})
+});
 
 </pre>
 <pre class="prettyprint">
@@ -158,7 +158,6 @@ JSB.create("org.jsborn.controller",'#controller-test2');
 ...
 &lt;div id=&quot;controller-test&quot;&gt;
     &lt;div jsb-event=&quot;click:_click_cb&quot;&gt;please click me!&lt;/div&gt;
-    &lt;input jsb-event=&quot;keyup:_keyup_cb&quot; /&gt;
     &lt;div jsb-cls=&quot;org.jsborn.controller.node&quot;&gt;
         &lt;div jsb-event=&quot;click:_node_cb&quot;&gt;please click node!&lt;/div&gt;
     &lt;/div&gt;
@@ -172,7 +171,7 @@ JSB.cls("org.jsborn.controller", {
 
         this.setRoot("#controller-test");
         //監聽如果註冊了class時的callback
-        this.addListener("controller.create", function (e,scope,element) {
+        this.addListener("controller-create", function (e,scope,element) {
             //這個scope指的是 org.jsborn.controller.node
             scope.setRoot(element);
 

@@ -13,17 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 (function(window) {
 
 	var _q     = jQuery;
 
-	var _a_ver = _q.fn.jquery.split('.');
-
 	var _s_e_o = "on";
 
 	var _s_e_f = "off";
-
-	if(_a_ver[1]<7){
+	//Compatible jQuery version below then 1.7
+	if(_q.fn.jquery.split('.')[1]<7){
 		_s_e_o = "bind";
 		_s_e_f = "unbind";
 	}
@@ -58,7 +57,6 @@
 			extendPlugins :[],
 
 			importSetup:{
-				ext:[".js"],
 				library:'',
 				source:'',
 				parserURL:function(url){
@@ -78,19 +76,21 @@
 
 		create: function(str_name,obj_options,bol_trigger_off) {
 
-			if(JSB.config.createImport){
-				this._check_class(str_name);
+			var me = JSB;
+
+			if(me.config.createImport){
+				me._check_class(str_name);
 			}
 
-			var _ns_cls = JSB._get_class(str_name);
+			var _ns_cls = me._get_class(str_name);
 
 			if(!_ns_cls){
-				JSB.echo("error","NO CLASS:"+str_name);
+				me.echo("error","CLASS:NOT FIND",str_name);
 				return false;
 			}
 
 			if(_ns_cls.config.abstr){
-				JSB.echo("error","CLASS:ABSTR can't create",str_name);
+				me.echo("error","CLASS:ABSTR",str_name);
 				return false;
 			}
 
@@ -99,7 +99,7 @@
 			}
 
 			if(_ns_cls.config.single&&_ns_cls.config.nodes.length>0){
-				JSB.echo("error","CLASS:SINGLE",str_name);
+				me.echo("error","CLASS:SINGLE",str_name);
 				return false;
 			}
 
@@ -108,7 +108,7 @@
 			_ns_cls.config.nodes.push(_ns);
 
 			if(!bol_trigger_off){
-				_q(JSB).triggerHandler('jsb.create',_ns);	
+				_q(me).triggerHandler('jsb.create',_ns);	
 			}
 			
 
@@ -144,11 +144,11 @@
 			
 			var _str_name       = ns_class.config.name;
 			
-			if(JSB.getCore(_str_name)){
+			if(JSB._get_core(_str_name)){
 
 				JSB.echo("log","Core: "+ _str_name +" already register.");
 
-				return JSB.getCore(_str_name);
+				return JSB._get_core(_str_name);
 
 			}
 
@@ -175,8 +175,8 @@
 			
 			var _str_name       = ns_class.config.name;
 
-			var me = this;
-			//檢查是否已經被註冊
+			var me = JSB;
+			//check plugin
 			if(me._get_plugin(_str_name)){
 
 				me.echo("log","Plugin: "+ns_class+" already register.");
@@ -184,7 +184,7 @@
 				return me._get_plugin(_str_name);
 			
 			}
-			//檢查插件的依賴類
+			//check plugin depend
 			if(_q.isArray(_ary_depends)){
 
 				for (var i = 0; i < _ary_depends.length; i++) {
@@ -211,15 +211,13 @@
 
 		getClassData: function() {
 
-			var me = this;
-
-			return me.data.clss;
+			return JSB.data.clss;
 
 		},
 
 		getImportData: function() {
 
-			return this.data.imports;
+			return JSB.data.imports;
 
 		},
 
@@ -233,7 +231,7 @@
 				return true;
 			}
 
-			_str_url = this._parser_url(_str_import);
+			_str_url = JSB._parser_url(_str_import);
 
 			_q.ajax({
 
@@ -331,7 +329,7 @@
 
 				if (me._get_class(name)) {
 
-					me.echo("error","CLASS:'" + name + "' define again");
+					me.echo("warn","CLASS:'" + name + "' define again");
 
 					return true;
 
@@ -375,7 +373,7 @@
 
 					}
 
-					this._name = name;
+					this.className = name;
 
 					this._count = 0;
 
@@ -384,11 +382,11 @@
 					this._ary_extend = [];
 
 					this._ary_plugin = [];
-					//插件初始化
+					//class plugin init
 					this._plugin_init(_jsb_cls);
-					//繼承
+					//class extend init
 					this._extend(this);
-					//載入依賴包
+					//import class
 					this._import();
 
 					this.initialize(options);
@@ -573,7 +571,7 @@
 						return true;
 					}
 
-					var _ns_cls = JSB._get_class(this._name);
+					var _ns_cls = JSB._get_class(this.className);
 
 					for (var i = 0; i < _ns_cls.config.nodes.length; i++) {
 						if(_ns_cls.config.nodes[i]==this){
@@ -599,7 +597,7 @@
 
 				dispatchEvent:function(str_event,obj_data){
 
-					_q(this).triggerHandler('cls.'+str_event,this,obj_data);
+					_q(this).triggerHandler('cls.'+str_event,[this,obj_data]);
 
 				},
 
@@ -638,28 +636,23 @@
 
 				var _str_basename = url.replace(/\\/g, '/').replace(/.*\//, '');
 
-				for (var i = 0; i < JSB.config.importSetup.ext.length; i++) {
+				var _str_ext = '.js';
 
-					var _str_ext = JSB.config.importSetup.ext[i];
-
-					if (_str_basename.substr(_str_basename.length,-_str_ext.length) != _str_ext) {
-						
-						_str_url  = url.replace(/\./g, '/');
-						
-						if(url.match(/^jsborn\./g) == -1){
-							_str_url  = JSB.config.importSetup.source + _str_url + _str_ext;
-						}else{
-							_str_url  = JSB.config.importSetup.library + _str_url + _str_ext;
-						}
-						
-						break;
-
-					}else {
-						_str_url = url;
-
+				if (_str_basename.substr(_str_basename.length,-_str_ext.length) != _str_ext) {
+					
+					_str_url  = url.replace(/\./g, '/');
+					
+					if(url.match(/^jsborn\./g) == -1){
+						_str_url  = JSB.config.importSetup.source + _str_url + _str_ext;
+					}else{
+						_str_url  = JSB.config.importSetup.library + _str_url + _str_ext;
 					}
+					
+				}else {
 
-				};
+					_str_url = url;
+
+				}
 
 			}
 

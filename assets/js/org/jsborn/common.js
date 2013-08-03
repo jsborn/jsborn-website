@@ -1,7 +1,11 @@
 JSB.cls("org.jsborn.common", {
 
+	plugins:["jsborn.plugin.model"],
+
 	initialize: function(options) {
 
+		prettyPrint();
+		
 		jQuery('#jsb-affix').affix({
 
 			offset: {
@@ -39,6 +43,19 @@ JSB.cls("org.jsborn.common", {
 
 		});
 		
+		var dd2 = this.addModel("key",{});
+
+		dd2.addListener("model-add",function(){
+
+			console.log("add")
+
+		});
+
+		dd2.addListener("model-modify",function(){
+
+			console.log("modify")
+
+		});
 
 	}
 

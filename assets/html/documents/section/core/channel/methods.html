@@ -1,0 +1,391 @@
+<h3 id="jsb-core-channel-methods">Method</h3>
+<p>Channel 註冊在 <code>JSB.core.channel</code> ， 呼叫如 <code>JSB.core.channel.addChannel(ROOM)</code></p>
+<div>
+	<table class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<th width="30%">Name</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tr>
+			<td>addChannel(room)</td>
+			<td>
+				<p>新增一個事件頻道，就像聊天室一樣。</p>
+				<p>
+					<table class="table table-bordered ">
+						<thead>
+							<tr>
+								<th>Parameters</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<ul>
+										<li>
+											<p>
+												<code>room</code>
+												: (String)
+												<label class="label label-danger">require</label>
+											</p>
+											<p>頻道的名稱</p>
+										</li>
+									</ul>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+				<p>
+					<table class="table table-bordered ">
+						<thead>
+							<tr>
+								<th>Returns</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<code>Boolean</code>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+			</td>
+		</tr>
+		<tr>
+			<td>delChannel(room)</td>
+			<td>
+				<p>刪除事件頻道。</p>
+				<p>
+					<table class="table table-bordered ">
+						<thead>
+							<tr>
+								<th>Parameters</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<ul>
+										<li>
+											<p>
+												<code>room</code>
+												: (String)
+												<label class="label label-danger">require</label>
+											</p>
+											<p>頻道的名稱</p>
+										</li>
+									</ul>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+				<p>
+					<table class="table table-bordered ">
+						<thead>
+							<tr>
+								<th>Returns</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<code>Boolean</code>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+			</td>
+		</tr>
+		<tr>
+			<td>join(room,jsb_class,callback)</td>
+			<td>
+				<p>讓物件加入頻道指定的頻道</p>
+				<p>
+					<table class="table table-bordered ">
+						<thead>
+							<tr>
+								<th>Parameters</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<ul>
+										<li>
+											<p>
+												<code>room</code>
+												: (String)
+												<label class="label label-danger">require</label>
+											</p>
+											<p>
+												頻道名稱
+											</p>
+										</li>
+										<li>
+											<p>
+												<code>jsb_class</code>
+												: (Class)
+												<label class="label label-danger">require</label>
+											</p>
+											<p>
+												物件
+											</p>
+										</li>
+										<li>
+											<p>
+												<code>callback</code>
+												: (Function)
+												<label class="label label-danger">require</label>
+											</p>
+											<p>
+												當接收到訊息時的回調函式
+											</p>
+										</li>
+									</ul>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+				<p>
+					<table class="table table-bordered ">
+						<thead>
+							<tr>
+								<th>Returns</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<code>Boolean</code>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+			</td>
+		</tr>
+		<tr>
+			<td>getChannel(room)</td>
+			<td>
+				<p>
+					取得指定頻道的資料。
+				</p>
+				<p>
+					<table class="table table-bordered ">
+						<thead>
+							<tr>
+								<th>Parameters</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<ul>
+										<li>
+											<p>
+												<code>room</code>
+												: (String)
+												<label class="label label-danger">require</label>
+											</p>
+											<p>
+												頻道的名稱
+											</p>
+										</li>
+									</ul>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+				<p>
+					<table class="table table-bordered ">
+						<thead>
+							<tr>
+								<th>Returns</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<code>Object</code>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+			</td>
+		</tr>
+		<tr>
+			<td>getChannelData()</td>
+			<td>
+				<p>
+					取得所有在頻道的資料
+				</p>
+				<p>
+					<table class="table table-bordered ">
+						<thead>
+							<tr>
+								<th>Returns</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<code>Array</code>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+			</td>
+		</tr>
+		<tr>
+			<td>send(room,data)</td>
+			<td>
+				<p>對指定的頻道傳送事件或資料，只有頻道內的會員才會觸發Callback</p>
+				<p>
+					<table class="table table-bordered ">
+						<thead>
+							<tr>
+								<th>Parameters</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<ul>
+										<li>
+											<p>
+												<code>room</code>
+												: (String)
+												<label class="label label-danger">require</label>
+											</p>
+											<p>
+												頻道的名稱
+											</p>
+										</li>
+										<li>
+											<p>
+												<code>data</code>
+												: (Object)
+											</p>
+											<p>
+												傳送給指定頻道的資料
+											</p>
+										</li>
+									</ul>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+				<p>
+					<table class="table table-bordered ">
+						<thead>
+							<tr>
+								<th>Returns</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<code>Boolean</code>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+			</td>
+		</tr>
+		<tr>
+			<td>leave(room,jsb_class)</td>
+			<td>
+				<p>讓物件離開指定頻道</p>
+				<p>
+					<table class="table table-bordered ">
+						<thead>
+							<tr>
+								<th>Parameters</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<ul>
+										<li>
+											<p>
+												<code>room</code>
+												: (String)
+												<label class="label label-danger">require</label>
+											</p>
+											<p>
+												頻道的名稱
+											</p>
+										</li>
+										<li>
+											<p>
+												<code>jsb_class</code>
+												: (Class)
+												<label class="label label-danger">require</label>
+											</p>
+											<p>
+												物件
+											</p>
+										</li>
+									</ul>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+				<p>
+					<table class="table table-bordered ">
+						<thead>
+							<tr>
+								<th>Returns</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<code>Boolean</code>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+			</td>
+		</tr>
+		
+	</table>
+					<pre class="prettyprint linenums">
+JSB.cls("org.jsborn.a", {
+
+    imports: ["jsborn.core.channel"],
+ 
+    initialize: function () {
+
+        JSB.core.channel.join('channelName', this, function (e, data) {
+
+        	alert("callback:"+data);
+
+        	JSB.core.channel.leave('channelName', this);
+
+        });
+ 
+    }
+ 
+});
+
+JSB.create("org.jsborn.a");
+
+JSB.core.channel.send('channelName','helloworld');
+</pre>
+</div>

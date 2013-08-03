@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 JSB.extendCore("channel",JSB.cls("jsborn.core.channel", {
 
 	addChannel:function(str_room){
@@ -59,6 +60,8 @@ JSB.extendCore("channel",JSB.cls("jsborn.core.channel", {
 			func_cb.apply(ns_scope,arguments);
 		});
 
+		return true;
+
 	},
 
 	getChannel:function(str_room){
@@ -91,6 +94,8 @@ JSB.extendCore("channel",JSB.cls("jsborn.core.channel", {
 
 		jQuery(this).triggerHandler(str_room, obj);
 
+		return true;
+		
 	},
 
 	leave:function(str_room,ns_scope){

@@ -1,0 +1,347 @@
+<h3 id="jsb-plugin-controller-methods">Method</h3>
+<p>Controller Method</p>
+<div>
+	<table class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<th width="20%">Name</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tr>
+			<td>getRoot()</td>
+			<td>
+				<p>取得物件綁定的<code>setRoot</code>時的值</p>
+				<p>
+					<table class="table table-bordered ">
+						<thead>
+							<tr>
+								<th>Returns</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<code>Misc</code>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+			</td>
+		</tr>
+		<tr>
+			<td>registerClass()</td>
+			<td>
+				<p>自動對應符合attribute的html dom 建立物件，必須要先<code>setRoot</code></p>
+				<p>
+					<table class="table table-bordered ">
+						<thead>
+							<tr>
+								<th>Attribute</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<ul>
+										<li>
+											<p>
+												<code>jsb-cls="classname"</code>
+												<label class="label label-danger">require</label>
+											</p>
+											<p>
+												<code>classname</code>:要建立的物件名稱
+											</p>
+										</li>
+									</ul>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+				<p>
+					<table class="table table-bordered ">
+						<thead>
+							<tr>
+								<th>Example</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<pre class="prettyprint linenums">
+										&lt;div id=&quot;controller-test&quot;&gt;
+											&lt;div jsb-cls=&quot;controller.example.node&quot;&gt;
+											&lt;/div&gt;
+										&lt;/div&gt;
+
+										JSB.cls("controller.example", {
+										    plugins: ["jsborn.plugin.controller"],
+										    initialize: function (options) {
+										        this.setRoot("#controller-test");
+										        this.addListener("controller.create", function (e,scope,element) {
+										        });
+										        this.registerClass();
+										    }
+										})
+										 
+										JSB.cls("controller.example.node", {
+										    initialize: function (options) {
+										    }
+										})
+										JSB.create("controller.example");
+									</pre>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+				<p>
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>Dispatch Event / 觸發事件</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<code>controller-create</code>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+			</td>
+		</tr>
+		<tr>
+			<td>registerData()</td>
+			<td>
+				<p>在執行此函式前，必須要先<code>setRoot</code>和<code>addModel</code>，此函式會自動對應符合attribute的html dom ，並且資料更新時會刷新dom</p>
+				<p>
+					<table class="table table-bordered ">
+						<thead>
+							<tr>
+								<th>Attribute</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<ul>
+										<li>
+											<p>
+												<code>jsb-data="modelname:key"</code>
+												<label class="label label-danger">require</label>
+											</p>
+											<p>
+												<code>modelname</code>:對應物件設定的Model物件名字
+											</p>
+											<p>
+												<code>callback</code>:對應物件Model資料欄位
+											</p>
+										</li>
+									</ul>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+				<p>
+					<table class="table table-bordered ">
+						<thead>
+							<tr>
+								<th>Example</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<pre class="prettyprint linenums">
+										...
+										&lt;div id="controller-test"&gt;
+											&lt;div jsb-data="datainfo:data.name"&gt;hello&lt;/div&gt;
+										&lt;/div&gt;
+										...
+										JSB.cls("controller.example", {
+										    plugins:["jsborn.plugin.controller"],
+										    initialize: function(options) {
+										        this.setRoot("#controller-test");
+										        this.addModel("datainfo",{
+										        	data:{
+										        		name:"hello"
+										        	}
+										    	});
+										        this.registerData();
+										    }
+										});
+										var _cls = JSB.create("controller.example");
+										_cls.setModel("datainfo",{
+											data:{
+												name:"helloworld"
+											}
+										});
+									</pre>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+			</td>
+		</tr>
+		<tr>
+			<td>registerEvent()</td>
+			<td>
+				<p>自動對應符合attribute的html dom 註冊事件，必須要先<code>setRoot</code></p>
+				<p>
+					<table class="table table-bordered ">
+						<thead>
+							<tr>
+								<th>Attribute</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<ul>
+										<li>
+											<p>
+												<code>jsb-event="event:callback"</code>
+												<label class="label label-danger">require</label>
+											</p>
+											<p>
+												<code>event</code>:對應jQuery所支援的事件
+											</p>
+											<p>
+												<code>callback</code>:對應物件的要接收callback的function
+											</p>
+										</li>
+									</ul>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+				<p>
+					<table class="table table-bordered ">
+						<thead>
+							<tr>
+								<th>Example</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<pre class="prettyprint linenums">
+										...
+										&lt;div id="controller-test"&gt;
+											&lt;div jsb-event="click:_click_cb"&gt;button&lt;/div&gt;
+										&lt;/div&gt;
+										...
+										JSB.cls("controller.example", {
+										    plugins:["jsborn.plugin.controller"],
+										    initialize: function(options) {
+										        this.setRoot("#controller-test");
+										        this.registerEvent();
+										    },
+										    _click_cb:function(){
+										        alert("_click_cb");
+										    }
+										});
+										JSB.create("controller.example");
+									</pre>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+			</td>
+		</tr>
+		<tr>
+			<td>select()</td>
+			<td>
+				<p>會用jQuery取得物件<code>setRoot</code>綁定的<code>dom</code></p>
+				<p>
+					<table class="table table-bordered ">
+						<thead>
+							<tr>
+								<th>Returns</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<code>jQuery Selector</code>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+			</td>
+		</tr>
+		<tr>
+			<td>setRoot(id)</td>
+			<td>
+				<p>對物件綁定一個<code>dom</code>的控制範圍</p>
+				<p>
+					<table class="table table-bordered ">
+						<thead>
+							<tr>
+								<th>Parameters</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<ul>
+										<li>
+											<p>
+												<code>id</code>
+												: (String/jQuery Selectors)
+												<label class="label label-danger">require</label>
+											</p>
+											<p>可以是<code>#id</code> <code>.css</code> 或 <code>jQuery('id')</code></p>
+										</li>
+									</ul>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+				<p>
+					<table class="table table-bordered ">
+						<thead>
+							<tr>
+								<th>Returns</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<code>Misc</code>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+			</td>
+		</tr>
+	</table>
+	<pre class="prettyprint linenums">
+		...
+		&lt;div id="controller-test"&gt;
+			DOM
+		&lt;/div&gt;
+		...
+		JSB.cls("controller.example", {
+		    plugins:["jsborn.plugin.controller"],
+		    initialize: function(options) {
+		        this.setRoot("#controller-test");
+		        console.log(this.getRoot());
+		        console.log(this.select());
+		    }
+		});
+		JSB.create("controller.example");
+	</pre>
+</div>

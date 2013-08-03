@@ -19,7 +19,7 @@ JSB.cls("org.jsborn.instance", {
 	initialize: function(options) {
 		//addModel函式是因為載入model才能使用。
 		//以下是model插件偵測資料一旦被改變則執行callback
-		this.addModel('key',{name:"hello"}).listener("mod",function(obj){
+		this.addModel('key',{name:"hello"}).addListener("model-modify",function(e,scope,obj){
 
 			console.log("name change to: "+ obj.name);
 			

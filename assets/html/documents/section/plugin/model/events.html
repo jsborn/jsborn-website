@@ -1,0 +1,147 @@
+<h3 id="jsb-plugin-model-events">Events</h3>
+<p>Model Events</p>
+<div>
+	<table class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<th width="30%">Name</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tr>
+			<td>model-add(jq_event,jsb_class,data)</td>
+			<td>
+				<p>當資料模組原有的值被新增資料時觸發。</p>
+				<p>
+					<table class="table table-bordered ">
+						<thead>
+							<tr>
+								<th>Parameters</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<ul>
+										<li>
+											<p>
+												<code>jq_event</code>
+												: (jQuery Event)
+											</p>
+											<p>jQuery Event 物件</p>
+										</li>
+										<li>
+											<p>
+												<code>jsb_class</code>
+												: (Class)
+											</p>
+											<p>物件本身</p>
+										</li>
+										<li>
+											<p>
+												<code>data</code>
+												: (Object)
+											</p>
+											<p>新增的值</p>
+										</li>
+									</ul>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+
+			</td>
+		</tr>
+		<tr>
+			<td>model-add(jq_event,jsb_class,data)</td>
+			<td>
+				<p>當資料模組原有的值被刪除時觸發。</p>
+				<p>
+					<table class="table table-bordered ">
+						<thead>
+							<tr>
+								<th>Parameters</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<ul>
+										<li>
+											<p>
+												<code>jq_event</code>
+												: (jQuery Event)
+											</p>
+											<p>jQuery Event 物件</p>
+										</li>
+										<li>
+											<p>
+												<code>jsb_class</code>
+												: (Class)
+											</p>
+											<p>物件本身</p>
+										</li>
+										<li>
+											<p>
+												<code>data</code>
+												: (Object)
+											</p>
+											<p>刪除的值</p>
+										</li>
+									</ul>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+
+			</td>
+		</tr>
+		<tr>
+			<td>model-modify(jq_event,jsb_class,data)</td>
+			<td>
+				<p>當資料模組原有的值被修改時觸發。</p>
+				<p>
+					<table class="table table-bordered ">
+						<thead>
+							<tr>
+								<th>Parameters</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<ul>
+										<li>
+											<p>
+												<code>jq_event</code>
+												: (jQuery Event)
+											</p>
+											<p>jQuery Event 物件</p>
+										</li>
+										<li>
+											<p>
+												<code>jsb_class</code>
+												: (Class)
+											</p>
+											<p>物件本身</p>
+										</li>
+										<li>
+											<p>
+												<code>data</code>
+												: (Object)
+											</p>
+											<p>修改的值</p>
+										</li>
+									</ul>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+
+			</td>
+		</tr>
+	</table>
+</div>

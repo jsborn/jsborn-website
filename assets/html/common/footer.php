@@ -18,36 +18,55 @@
 <script src="<?php echo DIR_ROOT; ?>/assets/js/bootstrap/bootstrap-3.js"></script>
 <script src="<?php echo DIR_ROOT; ?>/assets/js/prettify/prettify.js"></script>
 <script src="<?php echo DIR_ROOT; ?>/assets/js/jsborn/jsborn.js"></script>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/zh_TW/all.js#xfbml=1&appId=177066082444122";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
 <script type="text/javascript">
-		jQuery( document ).ready(function() {
-
-			JSB.setConfig({
-				console:true,
-				createImport :true,
-				importSetup:{
-					library:'<?php echo DIR_ROOT; ?>/assets/js/',
-					source:'<?php echo DIR_ROOT; ?>/assets/js/jsborn/'
-				}
-			});
-
-			JSB.addListener('create',function(){
-				console.log("create");
-			});
+	jQuery(document).ready(function() {
 			
-			JSB.addListener('destroy',function(){
-				console.log("destroy");
-			});
-
-			var cls = JSB.create("org.jsborn.common");
-			
+		JSB.setConfig({
+			console: true,
+			createImport: true,
+			importSetup: {
+				library: '<?php echo DIR_ROOT; ?>/assets/js/',
+				source: '<?php echo DIR_ROOT; ?>/assets/js/jsborn/'
+			}
 		});
-	</script>
+
+		JSB.addListener('create', function() {
+			// console.log(arguments);
+			// console.log("create");
+		});
+
+		JSB.addListener('destroy', function() {
+			// console.log(arguments);
+			// console.log("destroy");
+		});
+
+		window.cls = JSB.create("org.jsborn.common");
+
+	});
+</script>
+<script type="text/javascript">
+	window.fbAsyncInit = function() {
+		FB.init({
+			appId: '223395717811146',
+			status: true,
+			xfbml: true
+		});
+
+		FB.Event.subscribe('xfbml.render', function() {
+			$("#social-like-btn").show();
+		});
+		
+	};
+	(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) {
+			return;
+		}
+		js = d.createElement(s);
+		js.id = id;
+		js.src = "//connect.facebook.net/zh_TW/all.js";
+		fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+</script>
 </body>
 </html>

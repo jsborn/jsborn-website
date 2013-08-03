@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 JSB.extendPlugin(JSB.cls("jsborn.plugin.model", {
 
 	depends:["jsborn.core.model"],
@@ -23,15 +24,15 @@ JSB.extendPlugin(JSB.cls("jsborn.plugin.model", {
 
 		return {
 
+			addModel    : dd._add_model,
+			
+			delModel    : dd._del_model,
+			
+			getModel    : dd._get_model,
+
 			getModelData: dd._get_model_data,
-
-			getModel: dd._get_model,
-
-			setModel: dd._set_model,
-
-			delModel: dd._del_model,
-
-			addModel: dd._add_model
+			
+			setModel    : dd._set_model
 
 		};
 
@@ -45,10 +46,6 @@ JSB.extendPlugin(JSB.cls("jsborn.plugin.model", {
 			model:[]
 		}
 		
-		// this.config = (new Date()).getTime();
-		// console.log("com1",this);
-		// _test();
-		// this.test1();
 		dd.addListener('destroy',function(){
 
 			for (var i = 0; i < dd.PLUGIN_MODEL.model.length; i++) {
@@ -105,11 +102,6 @@ JSB.extendPlugin(JSB.cls("jsborn.plugin.model", {
 	},
 
 	_add_model:function(str_key,obj_data){
-
-		// if(jQuery.type(str_key) !== "string"){
-		// 	console.error("bindModel:key need string");
-		// 	return false;
-		// }
 
 		var dd = this;
 
@@ -188,23 +180,22 @@ JSB.cls("jsborn.plugin.model.node",{
 	change:function(obj_data){
 
 		var dd = this;
+		
+		var _obj_diff = JSB.core.model.getObjtDiff(dd.getData(), obj_data,"all");
 
-		for (var i = 0; i < dd._ary_listeners.length; i++) {
+		if(!jQuery.isEmptyObject(_obj_diff.add)){
+			dd.dispatchEvent("model-add",_obj_diff.add);
+		}
 
-			var _obj_listener = dd._ary_listeners[i];
+		if(!jQuery.isEmptyObject(_obj_diff.del)){
+			dd.dispatchEvent("model-del",_obj_diff.del);
+		}
+
+		if(!jQuery.isEmptyObject(_obj_diff.modify)){
+			dd.dispatchEvent("model-modify",_obj_diff.modify);
+		}
 			
-			var _ns_scope = _obj_listener.scope?_obj_listener.scope:dd;
-			
-			var _obj_diff = JSB.core.model.getObjtDiff(dd.getData(), obj_data,_obj_listener.type);
-
-			if(!jQuery.isEmptyObject(_obj_diff)){
-				_obj_listener.func.apply(_ns_scope,[_obj_diff]);	
-			}
-
-		};
-
 		dd.setData(obj_data);
-		// console.log(diff);
 
 	},
 
@@ -213,28 +204,6 @@ JSB.cls("jsborn.plugin.model.node",{
 		var dd = this;
 
 		dd.setOption(options);
-
-		dd._ary_listeners = [];
-
-		dd.addListener('destroy',function(){
-
-		})
-
-	},
-
-	listener:function(type,func_cb,scope){
-
-		var dd = this;
-
-		var _obj_data = {
-			type:type,
-			func:func_cb,
-			scope:scope
-		}
-
-		dd._ary_listeners.push(_obj_data);
-
-		return scope;
 
 	}
 

@@ -11,7 +11,7 @@
 		<tr>
 			<td>JSB.addListener(event,callback,scope)</td>
 			<td>
-				<p>監聽物件的事件</p>
+				<p>監聽JSB的事件</p>
 				<p>
 					<table class="table table-bordered ">
 						<thead>
@@ -26,14 +26,16 @@
 										<li>
 											<p>
 												<code>event</code>
-												: (String) <label class="label label-danger">require</label>
+												: (String)
+												<label class="label label-danger">require</label>
 											</p>
 											<p>事件的名字</p>
 										</li>
 										<li>
 											<p>
 												<code>callback</code>
-												: (Function) <label class="label label-danger">require</label>
+												: (Function)
+												<label class="label label-danger">require</label>
 											</p>
 											<p>回调函数</p>
 										</li>
@@ -71,9 +73,13 @@
 										<li>
 											<p>
 												<code>classname</code>
-												: (String) <label class="label label-danger">require</label>
+												: (String)
+												<label class="label label-danger">require</label>
 											</p>
-											<p>物件名字，如：<code>org.jsborn.class</code></p>
+											<p>
+												物件名字，如：
+												<code>org.jsborn.class</code>
+											</p>
 										</li>
 										<li>
 											<p>
@@ -87,7 +93,11 @@
 												<code>triggeroff</code>
 												: (Boolean)
 											</p>
-											<p>建立時是否要觸發<code>create</code>事件，這會影響建立物件的速度</p>
+											<p>
+												建立時是否要觸發
+												<code>create</code>
+												事件，這會影響建立物件的速度
+											</p>
 										</li>
 									</ul>
 								</td>
@@ -147,14 +157,22 @@
 										<li>
 											<p>
 												<code>type</code>
-												: (String) <label class="label label-danger">require</label>
+												: (String)
+												<label class="label label-danger">require</label>
 											</p>
-											<p>console物件的函數，如:<code>log</code> , <code>info</code> 等</p>
+											<p>
+												console物件的函數，如:
+												<code>log</code>
+												,
+												<code>info</code>
+												等
+											</p>
 										</li>
 										<li>
 											<p>
 												<code>[misc ... ]</code>
-												: (Misc) <label class="label label-danger">require</label>
+												: (Misc)
+												<label class="label label-danger">require</label>
 											</p>
 											<p>
 												<pre>JSB.echo("log",1,2,3,4,5,6,7,8,9);</pre>
@@ -171,7 +189,10 @@
 		<tr>
 			<td>JSB.extendCore(namespace,jsb_class)</td>
 			<td>
-				<p>此函式主要能讓第三方物件或自建的程式擴充到JSB。詳細請看<a href="../developer/" target="_blank">開發者手冊</a></p>
+				<p>
+					此函式主要能讓第三方物件或自建的程式擴充到JSB。詳細請看
+					<a href="../developer/" target="_blank">開發者手冊</a>
+				</p>
 				<p>
 					<table class="table table-bordered ">
 						<thead>
@@ -186,17 +207,23 @@
 										<li>
 											<p>
 												<code>namespace</code>
-												: (String) <label class="label label-danger">require</label>
+												: (String)
+												<label class="label label-danger">require</label>
 											</p>
-											<p>命名空間，例如："myname"，擴充成功會就可以調用<code>JSB.core.myname</code></p>
+											<p>
+												命名空間，例如："myname"，擴充成功會就可以調用
+												<code>JSB.core.myname</code>
+											</p>
 										</li>
 										<li>
 											<p>
 												<code>jsb_class</code>
-												: (Class) <label class="label label-danger">require</label>
+												: (Class)
+												<label class="label label-danger">require</label>
 											</p>
 											<p>
-												擴充JSB的物件，該物件與一般物件有差異，詳細請看<a href="../developer/" target="_blank">開發者手冊</a>
+												擴充JSB的物件，該物件與一般物件有差異，詳細請看
+												<a href="../developer/" target="_blank">開發者手冊</a>
 											</p>
 										</li>
 									</ul>
@@ -210,7 +237,10 @@
 		<tr>
 			<td>JSB.extendPlugin(jsb_class)</td>
 			<td>
-				<p>此函式主要能讓第三方物件或自建的程式擴充到物件。詳細請看<a href="../developer/" target="_blank">開發者手冊</a></p>
+				<p>
+					此函式主要能讓第三方物件或自建的程式擴充到物件。詳細請看
+					<a href="../developer/" target="_blank">開發者手冊</a>
+				</p>
 				<p>
 					<table class="table table-bordered ">
 						<thead>
@@ -225,10 +255,12 @@
 										<li>
 											<p>
 												<code>jsb_class</code>
-												: (Class) <label class="label label-danger">require</label>
+												: (Class)
+												<label class="label label-danger">require</label>
 											</p>
 											<p>
-												擴充物件，詳細請看<a href="../developer/" target="_blank">開發者手冊</a>
+												擴充物件，詳細請看
+												<a href="../developer/" target="_blank">開發者手冊</a>
 											</p>
 										</li>
 									</ul>
@@ -301,11 +333,10 @@
 										<li>
 											<p>
 												<code>classname</code>
-												: (String) <label class="label label-danger">require</label>
+												: (String)
+												<label class="label label-danger">require</label>
 											</p>
-											<p>
-												物件名字，若該物件檔案還沒載入，將會動態載入。
-											</p>
+											<p>物件名字，若該物件檔案還沒載入，將會動態載入。</p>
 										</li>
 									</ul>
 								</td>
@@ -318,7 +349,7 @@
 		<tr>
 			<td>JSB.removeListener(event)</td>
 			<td>
-				<p>移除監聽物件的事件</p>
+				<p>移除監聽JSB的事件</p>
 				<p>
 					<table class="table table-bordered ">
 						<thead>
@@ -347,34 +378,108 @@
 			</td>
 		</tr>
 		<tr>
-			<td>JSB.setConfig(options)</td>
 			<td>
-				<p>設定JSB的全域設定 <label class="label label-danger">重要</label></p>
-				<p>
-					<table class="table table-bordered ">
-						<thead>
-							<tr>
-								<th>Parameters</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>
-									<ul>
-										<li>
-											<p>
-												<code>options</code>
-												: (Object)
-											</p>
-											<p>事件的名字</p>
-										</li>
-									</ul>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</p>
-
+				<p>JSB.setConfig(options)</p>
+			</td>
+			<td>
+				<p>設定JSB的全域設定</p>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<table class="table table-bordered table-striped">
+					<thead>
+						<tr>
+							<th style="width: 100px;">Name</th>
+							<th style="width: 90px;">type</th>
+							<th style="width: 50px;">default</th>
+							<th>description</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>console</td>
+							<td>boolean</td>
+							<td>true</td>
+							<td>是否要輸出console訊息，主要是控制<code>JSB.echo</code></td>
+						</tr>
+						<tr>
+							<td>createImport</td>
+							<td>boolean</td>
+							<td>true</td>
+							<td>
+								建立物件時，如果完全沒載入該物件的JS檔案，是否要自動尋找。
+							</td>
+						</tr>
+						<tr>
+							<td>extendPlugins</td>
+							<td>array</td>
+							<td>[]</td>
+							<td>
+								設定所有物件在建立預設就自動的擴充插件，不需要每個重覆設定。
+							</td>
+						</tr>
+						<tr>
+							<td>importSetup</td>
+							<td>object</td>
+							<td colspan="2">
+								<p>物件Import時載入位置的設定，一旦設定錯誤則會無法載入檔案。</p>
+								<table class="table table-bordered ">
+								<thead>
+									<tr>
+										<th>Options</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<ul>
+												<li>
+													<p>
+														<code>library</code>
+														: (String) , default: ""
+													</p>
+													<p>JSBorn's Library Import時指定的位置，可以是相對或絕對路徑。</p>
+													<pre>importSetup:{library:"http://domain.com/LIBRARY_PATH"}</pre>
+												</li>
+												<li>
+													<p>
+														<code>source</code>
+														: (String) , default: ""
+													</p>
+													<p>開發者編寫的物件 Import時指定的位置，可以是相對或絕對路徑。</p>
+													<pre>importSetup:{source:"http://domain.com/source/SOURCE_PATH"}</pre>
+												</li>
+												<li>
+													<p>
+														<code>parserURL</code>
+														: (Function) 
+													</p>
+													<p>若需要後端要自定載入檔案位置，可以使用此函式</p>
+												</li>
+											</ul>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<pre class="prettyprint linenums">
+JSB.setConfig({
+	console:true,
+	createImport :true,
+	importSetup:{
+		library:'/assets/jsborn/',
+		//基本上source和library是可以一起的
+		source:'/assets/mysource/',
+		parserURL:function(url){
+			//REWRITE IMPORT PATH
+			return url
+		}
+	}
+});</pre>
 			</td>
 		</tr>
 	</table>

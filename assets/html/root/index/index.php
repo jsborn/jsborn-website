@@ -3,10 +3,15 @@
 		<div class="container">
 			<h1>JSBorn</h1>
 			<p class="lead">快速物件化您的JS，加速開發與管理</p>
-			<p>基於jQuery開發的輕量級框架(4kb)</p>
+			<p>基於jQuery開發的輕量級Library(壓縮6kb)</p>
+			<p>
 			<a class="btn btn-large btn-success" href="https://github.com/tureki/jsborn/archive/v0.5-alpha.zip"> <i class="glyphicon glyphicon-download-alt"></i>
 				<span>Download v0.5a</span>
 			</a>
+			</p>
+			<p>
+				<iframe src="http://ghbtns.com/github-btn.html?user=tureki&amp;repo=jsborn&amp;type=watch&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="100px" height="20px"></iframe>
+			</p>
 		</div>
 	</div>
 </div>

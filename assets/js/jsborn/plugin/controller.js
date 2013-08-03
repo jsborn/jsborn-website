@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 JSB.extendPlugin(JSB.cls("jsborn.plugin.controller", {
 
 	depends:[
@@ -25,17 +26,19 @@ JSB.extendPlugin(JSB.cls("jsborn.plugin.controller", {
 		var dd = this;
 
 		return {
-			registerEvent: dd._auto_bind,
 
+			getRoot      : dd._get_root,
+			
 			registerClass: dd._auto_class,
 
-			registerData: dd._auto_data,
+			registerData : dd._auto_data,
 
-			setRoot: dd._set_root,
-
-			getRoot: dd._get_root,
-
-			select: dd._select
+			registerEvent: dd._auto_event,
+			
+			select       : dd._select,
+			
+			setRoot      : dd._set_root
+			
 		};
 
 	},
@@ -102,7 +105,7 @@ JSB.extendPlugin(JSB.cls("jsborn.plugin.controller", {
 				_str_ctrl = "val";
 			}
 
-			dd.getModel(_str_key).listener(_str_d_e,function(obj){
+			dd.getModel(_str_key).addListener("model-"+_str_d_e,function(e,scope,obj){
 
 				var _misc_val = JSB.core.model.getObjKey(obj,_str_name);
 
@@ -130,13 +133,13 @@ JSB.extendPlugin(JSB.cls("jsborn.plugin.controller", {
 
 			dd.PLUGIN_CONTROLLER.nodes.push(_ns_class);
 
-			jQuery(dd).triggerHandler('cls.controller.create',[_ns_class,k]);
+			jQuery(dd).triggerHandler('cls.controller-create',[_ns_class,k]);
 
 		});
 
 	},
 
-	_auto_bind: function(func) {
+	_auto_event: function(func) {
 		
 		var dd = this;
 		

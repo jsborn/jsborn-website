@@ -1,4 +1,4 @@
-<h3 id="core-channel">Channel物件</h3>
+<h3 id="core-channel">Channel物件 <code>jsborn.core.channel</code></h3>
 <p>
 	<code>Channel</code>
 	能讓物件加入不同的事件頻道，就如收音機接收電臺一樣，接收事件。
@@ -20,7 +20,7 @@ JSB.cls("org.jsborn.a", {
     initialize: function (options) {
         //讓此物件加入channel-01
         JSB.core.channel.join('channel-01', this, function (e, data) {
-            console.log("i am org.jsborn.a :get channel-01 message!");
+            console.log("i am org.jsborn.a :get channel-01 message!",data);
         });
 
     }
@@ -33,7 +33,7 @@ JSB.cls("org.jsborn.b", {
     
     initialize: function (options) {
         JSB.core.channel.join('channel-01', this, function (e, data) {
-            console.log("i am org.jsborn.b :get channel-01 message!");
+            console.log("i am org.jsborn.b :get channel-01 message!", data);
         });
     }
 
@@ -45,11 +45,11 @@ JSB.cls("org.jsborn.c", {
 
     initialize: function (options) {
         //傳送資料給在channel-01的物件
-        JSB.core.channel.send('channel-01', 'YOUR_DATA');
+        JSB.core.channel.send('channel-01', 'SEND_DATA');
 
         //讓此物件加入channel-02
         JSB.core.channel.join('channel-02', this, function (e, data) {
-            console.log("i am org.jsborn.c :get channel-02 message!");
+            console.log("i am org.jsborn.c :get channel-02 message!", data);
         });
     }
 

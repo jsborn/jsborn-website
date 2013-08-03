@@ -1,0 +1,36 @@
+<div>
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>1</td>
+				<td>
+					物件支援無限繼承，如：<code>A 繼承 B 繼承 C 繼承 ... N </code>
+				</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>物件不支援多重繼承，主因是會造成不容易管理，尤其是JS本身的特性。</td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>
+					子層會將父層物件函式都會被繼承下來，一樣的函式則會被子層覆蓋，而物件<code>Options</code>等則不會被繼承。
+				</td>
+			</tr>
+			<tr>
+				<td>4</td>
+				<td>繼承的物件若沒有事先載入，則會按照物件名字搜尋，並且載入。載入失敗則會報錯。詳細可以見<code>import</code></td>
+			</tr>
+			<tr>
+				<td>5</td>
+				<td>繼承和Plugin的差別在於一個是自己寫，一個是第三方提供，管理上的差別。</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

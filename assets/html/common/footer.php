@@ -46,10 +46,7 @@
 
 		window.cls = JSB.create("org.jsborn.common");
 
-	});
-</script>
-<script type="text/javascript">
-	window.fbAsyncInit = function() {
+		window.fbAsyncInit = function() {
 		FB.init({
 			appId: '223395717811146',
 			status: true,
@@ -71,6 +68,8 @@
 		js.src = "//connect.facebook.net/zh_TW/all.js";
 		fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));
+
+	});
 </script>
 </body>
 </html>

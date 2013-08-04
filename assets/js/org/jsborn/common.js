@@ -42,20 +42,7 @@ JSB.cls("org.jsborn.common", {
 			alert("COMMING SOON!");
 
 		});
-		
-		var dd2 = this.addModel("key",{});
-
-		dd2.addListener("model-add",function(){
-
-			console.log("add")
-
-		});
-
-		dd2.addListener("model-modify",function(){
-
-			console.log("modify")
-
-		});
+	
 
 	}
 

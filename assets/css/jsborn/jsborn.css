@@ -3,6 +3,10 @@
 	margin: 0;
 }
 
+.jsborn .navbar-inverse{
+	opacity: 0.9;
+}
+
 .jsborn .jsb-header {
 	background-color: #EEE;
 	margin: 50px 0 0 0;

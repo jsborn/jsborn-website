@@ -56,8 +56,15 @@
 </div>
 <div>
 	<div class="page-header">
-		<h1 id="jsb-extend">extend</h1>
+		<h1 id="jsb-extend">extend 機制</h1>
 		<p class="lead">了解繼承的支援與特性</p>
 	</div>
 	<?php include "extend/index.html"; ?>
+</div>
+<div>
+	<div class="page-header">
+		<h1 id="jsb-import">import 機制</h1>
+		<p class="lead">了解import特性，可以修改你想要的載入位置。</p>
+	</div>
+	<?php include "import/index.html"; ?>
 </div>

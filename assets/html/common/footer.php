@@ -26,7 +26,11 @@
 			createImport: true,
 			importSetup: {
 				library: '<?php echo DIR_ROOT; ?>/assets/js/',
-				source: '<?php echo DIR_ROOT; ?>/assets/js/jsborn/'
+				source: '<?php echo DIR_ROOT; ?>/assets/js/',
+				parserURL:function(url){
+					console.log(url);
+					return url;
+				}
 			}
 		});
 

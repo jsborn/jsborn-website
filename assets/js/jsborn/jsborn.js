@@ -233,6 +233,8 @@
 
 			_str_url = JSB._parser_url(_str_import);
 
+			_str_url = JSB.config.importSetup.parserURL(_str_url);
+
 			_q.ajax({
 
 				url      : _str_url,
@@ -641,8 +643,8 @@
 				if (_str_basename.substr(_str_basename.length,-_str_ext.length) != _str_ext) {
 					
 					_str_url  = url.replace(/\./g, '/');
-					
-					if(url.match(/^jsborn\./g) == -1){
+
+					if(!url.match(/^jsborn\./g)){
 						_str_url  = JSB.config.importSetup.source + _str_url + _str_ext;
 					}else{
 						_str_url  = JSB.config.importSetup.library + _str_url + _str_ext;

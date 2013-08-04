@@ -1,0 +1,110 @@
+<div>
+	<p>
+		<code>import</code> 有點類似其他程式語言內的<code>include</code>，<code>import</code>等功能，主要是載入物件需要用到的<code>.js</code>檔案，並將<code>.js</code>內的物件註冊起來。
+	</p>
+	<p>
+		物件被初始化的時候，該物件設定的<code>imports</code>檔案才會執行載入。
+	</p>
+	<p>
+		如果已經在html內已加入如:<code>&lt;script src="./source/org/jsborn/test.js"&gt;&lt;/script&gt;</code>，<code>import</code>發現一樣的檔案會自動跳過。 
+	</p>
+	<hr>
+	<p>
+		若需要自訂<code>import</code>載入位置，例如:
+		<code>/?src=jsborn_core_channel.js</code> 或 <code>/jsborn_core_channel.js</code> 
+	</p>
+	<p>可以使用 <code>importSetup</code> 內的 <code>parserURL</code></p>
+	<pre class="prettyprint linenums">
+JSB.setConfig({
+	importSetup:{
+		parserURL:function(url){
+			var _str_url = url;
+			//DO SOMETHING!
+			return _str_url;
+		}
+	}
+});
+</pre>
+	<hr>
+	<p>
+		<code>import</code> 支援同時載入多個檔案，有3種解析方式。如果要修改可以用 <core>JSB.setConfig</core> 設定。 
+	</p>
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th width="5%">#</th>
+				<th width="15%">方式</th>
+				<th>說明</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>1</td>
+				<td>
+					物件名稱
+				</td>
+				<td>
+					<p>
+						如：<code>org.jsborn.test</code>，<code>import</code>會將該名稱變成<code>org/jsborn/test.js</code>，在按照JSB config的importSetup內的source來組合路徑。
+					</p>
+					<p>
+						如果載入JSBorn內建的檔案如:<code>jsborn.core.channel</code>，則會採用importSetup內的library變數來組合路徑。
+					</p>
+					<p>詳細請看<a href="#jsb-method-setconfig">JSB setConfig 的 importSetup</a></p>
+				</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>
+					相對路徑
+				</td>
+				<td>
+					<p>
+						<code>import</code>支援<code>org/jsborn/test.js</code>相對路徑。
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>
+					絕對路徑
+				</td>
+				<td>
+					<p>
+						<code>import</code>支援<code>http://domain.com/org/jsborn/test.js</code>絕對路徑。
+					</p>
+					<p>
+						<code>import</code>有一個對絕對路徑的限制是不能遠端讀取js檔案，只能載入同一個網域的js。
+					</p>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<pre class="prettyprint linenums">
+JSB.setConfig({
+	importSetup:{
+		library:"/assets/library/",
+		source:"/assets/source/"
+	}
+});
+
+JSB.cls("org.jsborn.test", {
+
+	imports:[
+		//最後這檔案會解析成:/assets/library/jsborn/core/channel.js
+		"jsborn.core.channel",
+		//最後這檔案會解析成:/assets/source/org/mysource/model.js
+		"org.mysource.model",
+		//維持現狀
+		"org/mysource/view.js",
+		//維持現狀
+		"http://domain.com/asset/source/org/mysource/test.js"
+	],
+
+	initialize:function(){
+
+	}
+
+});
+</pre>
+</div>

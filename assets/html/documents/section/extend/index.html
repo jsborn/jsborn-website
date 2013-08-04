@@ -29,7 +29,15 @@
 			</tr>
 			<tr>
 				<td>5</td>
-				<td>繼承和Plugin的差別在於一個是自己寫，一個是第三方提供，管理上的差別。</td>
+				<td>繼承時，物件可以在<code>initialize</code>時呼叫<code>SUPER()</code>，讓父層先進行初始化</td>
+			</tr>
+			<tr>
+				<td>6</td>
+				<td>物件如果沒有呼叫<code>SUPER()</code>，則物件<code>initialize</code>後父層才會進行初始化</td>
+			</tr>
+			<tr>
+				<td>7</td>
+				<td>繼承和插件的差別在於一個是自己寫，一個是第三方提供，管理上的差別。</td>
 			</tr>
 		</tbody>
 	</table>

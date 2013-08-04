@@ -71,27 +71,27 @@
 							<tr>
 								<td>
 									<pre class="prettyprint linenums">
-										&lt;div id=&quot;controller-test&quot;&gt;
-											&lt;div jsb-cls=&quot;controller.example.node&quot;&gt;
-											&lt;/div&gt;
-										&lt;/div&gt;
+&lt;div id=&quot;controller-test&quot;&gt;
+	&lt;div jsb-cls=&quot;controller.example.node&quot;&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
 
-										JSB.cls("controller.example", {
-										    plugins: ["jsborn.plugin.controller"],
-										    initialize: function (options) {
-										        this.setRoot("#controller-test");
-										        this.addListener("controller.create", function (e,scope,element) {
-										        });
-										        this.registerClass();
-										    }
-										})
-										 
-										JSB.cls("controller.example.node", {
-										    initialize: function (options) {
-										    }
-										})
-										JSB.create("controller.example");
-									</pre>
+JSB.cls("controller.example", {
+    plugins: ["jsborn.plugin.controller"],
+    initialize: function (options) {
+        this.setRoot("#controller-test");
+        this.addListener("controller.create", function (e,scope,element) {
+        });
+        this.registerClass();
+    }
+})
+ 
+JSB.cls("controller.example.node", {
+    initialize: function (options) {
+    }
+})
+JSB.create("controller.example");
+</pre>
 								</td>
 							</tr>
 						</tbody>
@@ -159,30 +159,30 @@
 							<tr>
 								<td>
 									<pre class="prettyprint linenums">
-										...
-										&lt;div id="controller-test"&gt;
-											&lt;div jsb-data="datainfo:data.name"&gt;hello&lt;/div&gt;
-										&lt;/div&gt;
-										...
-										JSB.cls("controller.example", {
-										    plugins:["jsborn.plugin.controller"],
-										    initialize: function(options) {
-										        this.setRoot("#controller-test");
-										        this.addModel("datainfo",{
-										        	data:{
-										        		name:"hello"
-										        	}
-										    	});
-										        this.registerData();
-										    }
-										});
-										var _cls = JSB.create("controller.example");
-										_cls.setModel("datainfo",{
-											data:{
-												name:"helloworld"
-											}
-										});
-									</pre>
+...
+&lt;div id="controller-test"&gt;
+	&lt;div jsb-data="datainfo:data.name"&gt;hello&lt;/div&gt;
+&lt;/div&gt;
+...
+JSB.cls("controller.example", {
+    plugins:["jsborn.plugin.controller"],
+    initialize: function(options) {
+        this.setRoot("#controller-test");
+        this.addModel("datainfo",{
+        	data:{
+        		name:"hello"
+        	}
+    	});
+        this.registerData();
+    }
+});
+var _cls = JSB.create("controller.example");
+_cls.setModel("datainfo",{
+	data:{
+		name:"helloworld"
+	}
+});
+</pre>
 								</td>
 							</tr>
 						</tbody>
@@ -234,23 +234,23 @@
 							<tr>
 								<td>
 									<pre class="prettyprint linenums">
-										...
-										&lt;div id="controller-test"&gt;
-											&lt;div jsb-event="click:_click_cb"&gt;button&lt;/div&gt;
-										&lt;/div&gt;
-										...
-										JSB.cls("controller.example", {
-										    plugins:["jsborn.plugin.controller"],
-										    initialize: function(options) {
-										        this.setRoot("#controller-test");
-										        this.registerEvent();
-										    },
-										    _click_cb:function(){
-										        alert("_click_cb");
-										    }
-										});
-										JSB.create("controller.example");
-									</pre>
+...
+&lt;div id="controller-test"&gt;
+	&lt;div jsb-event="click:_click_cb"&gt;button&lt;/div&gt;
+&lt;/div&gt;
+...
+JSB.cls("controller.example", {
+    plugins:["jsborn.plugin.controller"],
+    initialize: function(options) {
+        this.setRoot("#controller-test");
+        this.registerEvent();
+    },
+    _click_cb:function(){
+        alert("_click_cb");
+    }
+});
+JSB.create("controller.example");
+</pre>
 								</td>
 							</tr>
 						</tbody>
@@ -329,19 +329,19 @@
 		</tr>
 	</table>
 	<pre class="prettyprint linenums">
-		...
-		&lt;div id="controller-test"&gt;
-			DOM
-		&lt;/div&gt;
-		...
-		JSB.cls("controller.example", {
-		    plugins:["jsborn.plugin.controller"],
-		    initialize: function(options) {
-		        this.setRoot("#controller-test");
-		        console.log(this.getRoot());
-		        console.log(this.select());
-		    }
-		});
-		JSB.create("controller.example");
-	</pre>
+...
+&lt;div id="controller-test"&gt;
+	DOM
+&lt;/div&gt;
+...
+JSB.cls("controller.example", {
+    plugins:["jsborn.plugin.controller"],
+    initialize: function(options) {
+        this.setRoot("#controller-test");
+        console.log(this.getRoot());
+        console.log(this.select());
+    }
+});
+JSB.create("controller.example");
+</pre>
 </div>

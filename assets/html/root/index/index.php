@@ -1,7 +1,13 @@
 <div class="jsb-header">
 	<div class="jsb-download">
 		<div class="container">
-			<h1>JSBorn</h1>
+			<h1>
+				<img src="assets/img/logo.png" title="jsb"><span style="
+					position:relative;
+					left:-20px;
+				    vertical-align: bottom;
+				">orn</span>
+			</h1>
 			<p class="lead">快速物件化您的JS，加速開發與管理</p>
 			<p>基於jQuery開發的輕量級Library(壓縮6kb)</p>
 			<p>

@@ -2,7 +2,7 @@
 	<div class="jsb-download">
 		<div class="container">
 			<h1>
-				<img src="assets/img/logo.png" title="jsb"><span style="
+				<img src="assets/img/logo.png" title="jsb" width="180" height="180"><span style="
 					position:relative;
 					left:-20px;
 				    vertical-align: bottom;

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>JSborn::Sample-01</title>
+	<meta name="description" content="該範例使用了大部份的功能，讓物件，HTML與事件互相溝通">
+	<meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.css"></head>
+<body>
+	<style type="text/css">
+		body{
+			background-color: #EEE;
+		}
+		.sample.container{
+			margin: 10px;
+		}
+		.jsb-node {
+
+			padding: 15px 15px;
+			margin: 20px;
+			border-style: solid;
+			margin-left: 0;
+			margin-right: 0;
+			background-color: white;
+			border-width: 1px;
+			border-color: #DDD;
+			border-radius: 4px;
+			box-shadow: none;
+
+		}
+	</style>
+	<div>
+		<div class="sample container">
+			<h1 id="class">Sample-01</h1>
+			<p class="lead">該範例使用了大部份的功能，讓物件，HTML與事件互相溝通</p>
+			<p>1.左邊為新增物件的pannel，需要先輸入名字</p>
+			<p>2.右邊是一個專門接受左邊狀態的一個物件pannel</p>
+			<p>3.新增的物件你可以選擇刪除或取得它的info，每一個物件的資料都不會重覆和衝突</p>
+			<div class="col-lg-12">
+				<table class="table">
+					<thead>
+						<tr>
+							<th width="60%">Node Create</th>
+							<th width="40%">Received Event</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<div id="create-pannel">
+								<p>Node Count:<span jsb-data="nodedata:node_count">0</span></p>
+								<div class="input-group">
+									<input name="name" type="text" class="form-control" placeholder="type something and click 'Create'">
+									<span class="input-group-btn">
+										<button id="create-btn" class="btn btn-default" jsb-event="click:_create_click" type="button">Create</button>
+									</span>
+								</div>
+								<div id="container" class="container">
+								</div>
+								</div>
+							</td>
+							<td>
+								<div id="event-pannel">
+									<div id="message">
+
+									</div>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+		</div>
+	</div>
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="//getbootstrap.com/dist/js/bootstrap.js"></script>
+	<script src="../../src/jsborn.js"></script>
+	<script type="text/javascript">
+
+		jQuery(document).ready(function() {
+			
+			JSB.setConfig({
+				console: true,
+				createImport: true,
+				importSetup: {
+					library: '../../src/',
+					source: './'
+				}
+			});
+
+			var _cls = JSB.create("js.sample");
+			console.log(_cls);
+			_cls.validate();
+
+		});
+
+	</script>
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-42957857-1', 'jsborn.org');
+		ga('send', 'pageview');
+	</script>
+
+</body>
+</html>

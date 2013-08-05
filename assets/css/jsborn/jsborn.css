@@ -7,6 +7,12 @@
 	opacity: 0.9;
 }
 
+.jsborn .navbar-inverse .navbar-brand.active{
+	color: white;
+	background-color: #080808;
+}
+
+
 .jsborn .jsb-header {
 	background-color: #EEE;
 	margin: 50px 0 0 0;
@@ -189,6 +195,10 @@
 
 	.jsborn .jsb-sidebar.affix {
 		position: static;
+	}
+	
+	.jsborn .jsb-sidebar.sidebar-collapse .nav .nav {
+		display: block;
 	}
 
 }

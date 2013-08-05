@@ -11,10 +11,10 @@
 <?php include DIR_BASE."/assets/html/common/social.html"; ?>
 <div id="jsb-index" class="jsb-container container">
 	<div class="row">
-		<div class="col-lg-3">
+		<div class="col-lg-2">
 			<?php include "sidebar.html"; ?>
 		</div>
-		<div class="col-lg-9">
+		<div class="col-lg-10">
 			<?php include "section/section.php"; ?>
 		</div>
 	</div>

@@ -8,6 +8,6 @@
 	
 	include './assets/html/root/index/index.php';	
 	
-	include './assets/html/common/footer.php';	
+	include './assets/html/common/footer.php';
 
 ?>

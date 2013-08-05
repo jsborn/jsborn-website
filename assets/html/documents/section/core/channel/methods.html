@@ -365,27 +365,33 @@
 		</tr>
 		
 	</table>
+	<a class="btn btn-primary btn-code-edit" target="_blank" href="http://jsfiddle.net/tureki/KJDbY/" title="編輯範例" alt="編輯範例">
+		<span class="glyphicon glyphicon-edit"></span>
+		編輯範例
+	</a>
 	<pre class="prettyprint linenums">
 JSB.cls("org.jsborn.a", {
-
+ 
     imports: ["jsborn.core.channel"],
  
     initialize: function () {
-
+ 
         JSB.core.channel.join('channelName', this, function (e, data) {
-
-        	alert("callback:"+data);
-
-        	JSB.core.channel.leave('channelName', this);
-
+ 
+            alert("callback:"+data);
+ 
+            JSB.core.channel.leave('channelName', this);
+            //this is not work after leave channel.
+            JSB.core.channel.send('channelName','send again!');
+ 
         });
  
     }
  
 });
-
+ 
 JSB.create("org.jsborn.a");
-
+ 
 JSB.core.channel.send('channelName','helloworld');
 </pre>
 </div>

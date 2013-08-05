@@ -1,24 +1,21 @@
 <div id="jsb-nav" class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container">
-
 		<a href="<?php if(DIR_ROOT!=""){ ?><?php echo DIR_ROOT; ?><?php }else{ echo "/"; } ?>" class="navbar-brand">JSBorn</a>
-		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-		</button>
 		<div class="nav-collapse collapse bs-navbar-collapse">
 			<ul class="nav navbar-nav">
-				<li>
+				<li class="<?php if($toolbar_focus=='features'){echo 'active';} ?>">
 					<a href="<?php echo DIR_ROOT; ?>/features/">Features</a>
 				</li>
-				<li>
+				<li class="<?php if($toolbar_focus=='documents'){echo 'active';} ?>">
 					<a href="<?php echo DIR_ROOT; ?>/documents/">Documents</a>
 				</li>
-				<li>
+				<li class="<?php if($toolbar_focus=='roadmap'){echo 'active';} ?>">
+					<a href="<?php echo DIR_ROOT; ?>/roadmap/">Roadmap</a>
+				</li>
+				<li class="<?php if($toolbar_focus=='samples'){echo 'active';} ?>">
 					<a href="<?php echo DIR_ROOT; ?>/samples/">Samples</a>
 				</li>
-				<li>
+				<li class="<?php if($toolbar_focus=='developer'){echo 'active';} ?>">
 					<a href="<?php echo DIR_ROOT; ?>/developer/">Developer</a>
 				</li>
 				<li class="dropdown">

@@ -55,17 +55,21 @@
 						<tbody>
 							<tr>
 								<td>
-									<pre>
-										var obj = {
-											a:{
-												b:{
-													name:"helloworld!"
-												}
-											}
-										}
+									<a class="btn btn-primary btn-code-edit" target="_blank" href="http://jsfiddle.net/tureki/nrUpg/" title="編輯範例" alt="編輯範例">
+										<span class="glyphicon glyphicon-edit"></span>
+										編輯範例
+									</a>
+									<pre class="prettyprint linenums">
+var obj = {
+	a:{
+		b:{
+			name:"helloworld!"
+		}
+	}
+}
 
-										alert(JSB.core.model.getObjKey(obj,"a.b.name"));
-									</pre>
+alert(JSB.core.model.getObjKey(obj,"a.b.name"));
+</pre>
 								</td>
 							</tr>
 						</tbody>
@@ -144,25 +148,29 @@
 						<tbody>
 							<tr>
 								<td>
-									<pre>
-										var obj_org = {
-											a:{
-												b:{
-													name:"hello!"
-												}
-											}
-										}
+									<a class="btn btn-primary btn-code-edit" target="_blank" href="http://jsfiddle.net/tureki/vwfR5/" title="編輯範例" alt="編輯範例">
+										<span class="glyphicon glyphicon-edit"></span>
+										編輯範例
+									</a>
+									<pre class="prettyprint linenums">
+var obj_org = {
+	a:{
+		b:{
+			name:"hello!"
+		}
+	}
+}
 
-										var obj_mod = {
-											a:{
-												b:{
-													name:"helloworld!"
-												}
-											}
-										}
+var obj_mod = {
+	a:{
+		b:{
+			name:"helloworld!"
+		}
+	}
+}
 
-										console.log(JSB.core.model.getObjtDiff(obj_org,obj_mod,"modify"));
-									</pre>
+console.log(JSB.core.model.getObjtDiff(obj_org,obj_mod,"modify"));
+</pre>
 								</td>
 							</tr>
 						</tbody>

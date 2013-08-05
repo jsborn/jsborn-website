@@ -2,6 +2,8 @@
 	
 	include "../config.inc";
 
+	$toolbar_focus = "samples";
+
 	include '../assets/html/common/header.html';	
 
 	include '../assets/html/common/toolbar.html';	

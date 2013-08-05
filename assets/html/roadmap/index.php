@@ -21,6 +21,9 @@
 					<h4><strong>製作 developer 文件</strong></h4>
 				</div>
 				<div class="jsb-callout jsb-callout-danger">
+					<h4><strong>程式註解補上</strong></h4>
+				</div>
+				<div class="jsb-callout jsb-callout-danger">
 					<h4><strong>製作 unit test</strong></h4>
 					<p>使用<a href="http://qunitjs.com/" target="_blank">qunitjs</a>製作JSBorn的unit test</p>
 				</div>

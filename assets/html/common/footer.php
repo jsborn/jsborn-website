@@ -2,7 +2,7 @@
 	<div class="container">
 		<p>
 			Designed and built  by
-			<a href="http://fb.com/tureki" target="_blank">@tureki</a>
+			<a href="http://gplus.to/tureki" target="_blank">@tureki</a>
 		</p>
 		<p>
 			Code licensed under

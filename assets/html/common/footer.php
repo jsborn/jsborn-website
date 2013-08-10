@@ -24,7 +24,8 @@
 			console: true,
 			createImport: true,
 			importSetup: {
-				library: '<?php echo DIR_ROOT; ?>/assets/js/',
+				library: '<?php echo DIR_ROOT; ?>/assets/js/jsborn/',
+				jquery: '<?php echo DIR_ROOT; ?>/assets/js/jsborn/',
 				source: '<?php echo DIR_ROOT; ?>/assets/js/',
 				parserURL:function(url){
 					console.log(url);

@@ -1,8 +1,7 @@
 JSB.cls("org.jsborn.common", {
 
 	plugins:[
-		"jsborn.plugin.model",
-		"jsborn.plugin.template"
+		"jsborn.plugin.model"
 	],
 
 	initialize: function(options) {
@@ -46,9 +45,9 @@ JSB.cls("org.jsborn.common", {
 
 		});
 		
-		this.setTplPath("/jsborn/assets/js/")
+		// this.setTplPath("/jsborn/assets/js/")
 
-		this.loadTpl(["org/jsborn/template.html","org/jsborn/template2.html"]);
+		// this.loadTpl(["org/jsborn/template.html","org/jsborn/template2.html"]);
 	}
 
 

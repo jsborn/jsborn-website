@@ -694,7 +694,7 @@
 					}else if(url.match(/^jquery\./g)){
 						_str_url  = JSB.config.importSetup.jquery + _str_url + _str_ext;
 					}else{
-						
+						_str_url  = JSB.config.importSetup.source + _str_url + _str_ext;
 					}
 					
 				}else {

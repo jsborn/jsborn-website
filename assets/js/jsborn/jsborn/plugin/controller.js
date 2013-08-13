@@ -171,9 +171,19 @@ JSB.extendPlugin(JSB.cls("jsborn.plugin.controller", {
 
 	},
 
-	_select: function() {
+	_select: function(target) {
 
-		return jQuery(this.PLUGIN_CONTROLLER.str_root);
+		var _str_root = this.PLUGIN_CONTROLLER.str_root;
+
+		if(target){
+			return jQuery(_str_root).find(target);
+		}
+
+		if(!_str_root){
+			_str_root = 'body';
+		}
+
+		return jQuery(_str_root);
 
 	},
 

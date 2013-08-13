@@ -241,7 +241,9 @@
 				url      : _str_url,
 				
 				dataType : "script",
-				
+
+				cache	 : true,
+
 				async    : false,
 				
 				error    : function(jqXHR, textStatus, errorThrown) {
@@ -288,6 +290,8 @@
 					
 					dataType : "script",
 					
+					cache	 : true,
+
 					timeout:3000
 
 				}));

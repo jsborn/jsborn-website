@@ -1,8 +1,13 @@
 <footer id="jsb-footer" class="jsb-footer">
 	<div class="container">
 		<p>
-			Designed and built  by
-			<a href="http://gplus.to/tureki" target="_blank">@tureki</a>
+			<span>
+				Designed and built  by
+				<a href="https://twitter.com/tureki" target="_blank">@tureki</a>
+			</span>
+			<span>
+				<a title="Author: tureki on Google+" rel="author" href="https://plus.google.com/115553313711775317354/?rel=author" target="_blank">Google+</a>
+			</div>
 		</p>
 		<p>
 			Code licensed under

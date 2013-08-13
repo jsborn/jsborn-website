@@ -6,7 +6,7 @@
 				<a href="https://twitter.com/tureki" target="_blank">@tureki</a>
 			</span>
 			<span>
-				<a title="Author: tureki on Google+" rel="author" href="https://plus.google.com/115553313711775317354/?rel=author" target="_blank">Google+</a>
+				<a title="Author: tureki on Google+" rel="me" href="https://plus.google.com/115553313711775317354/?rel=me" target="_blank">Google+</a>
 			</div>
 		</p>
 		<p>

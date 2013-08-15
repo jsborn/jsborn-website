@@ -9,7 +9,7 @@
 				<a 
 				title="Author: kah wai liew on Google+" 
 				rel="publisher" 
-				href="https://plus.google.com/115553313711775317354" target="_blank">kah wai liew</a>
+				href="https://plus.google.com/115553313711775317354" target="_blank">Kah Wai Liew</a>
 			</div>
 		</p>
 		<p>

@@ -6,7 +6,10 @@
 				<a href="https://twitter.com/tureki" target="_blank">@tureki</a>
 			</span>
 			<span>
-				<a title="Author: tureki on Google+" rel="publisher" href="https://plus.google.com/115553313711775317354" target="_blank">Google+</a>
+				<a 
+				title="Author: kah wai liew on Google+" 
+				rel="publisher" 
+				href="https://plus.google.com/115553313711775317354" target="_blank">kah wai liew</a>
 			</div>
 		</p>
 		<p>

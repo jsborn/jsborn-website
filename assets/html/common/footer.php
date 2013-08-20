@@ -14,7 +14,7 @@
 </footer>
 <div id="fb-root"></div>
 <script src="<?php echo DIR_ROOT; ?>/assets/js/jquery/jquery-1-10-2.js"></script>
-<script src="<?php echo DIR_ROOT; ?>/assets/js/bootstrap/bootstrap-3.js"></script>
+<script src="<?php echo DIR_ROOT; ?>/assets/js/bootstrap/bootstrap.js"></script>
 <script src="<?php echo DIR_ROOT; ?>/assets/js/prettify/prettify.js"></script>
 <script src="<?php echo DIR_ROOT; ?>/assets/js/jsborn/jsborn.js"></script>
 <script type="text/javascript">

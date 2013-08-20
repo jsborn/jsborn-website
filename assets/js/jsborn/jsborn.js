@@ -38,11 +38,11 @@
 
 		data:{
 
-			cores    : {},
+			cores   : {},
 			
-			clss     : {},
+			clss    : {},
 			
-			plugins  : {},
+			plugins : {},
 			
 			imports : []
 
@@ -59,6 +59,7 @@
 			importSetup:{
 				library:'',
 				source:'',
+				jquery:'',
 				parserURL:function(url){
 
 					return url;
@@ -240,7 +241,9 @@
 				url      : _str_url,
 				
 				dataType : "script",
-				
+
+				cache	 : true,
+
 				async    : false,
 				
 				error    : function(jqXHR, textStatus, errorThrown) {
@@ -268,6 +271,34 @@
 		removeListener:function(str_event){
 
 			_q(JSB).off('jsb.'+str_event);
+
+		},
+
+		require:function(ary_source,scope){
+
+			var _ary_def = [];
+
+			var _int_id = "req:"+(new Date()).getTime();
+
+			scope = scope?scope:JSB;
+
+			for (var i = 0; i < ary_source.length; i++) {
+				
+				_ary_def.push(_q.ajax({
+
+					url      : ary_source[i],
+					
+					dataType : "script",
+					
+					cache	 : true,
+
+					timeout:3000
+
+				}));
+
+			};
+
+			return _q.when.apply(_q, _ary_def);
 
 		},
 
@@ -317,8 +348,6 @@
 
 			var me = this;
 
-
-
 			me._init_oop();
 
 		},
@@ -358,11 +387,11 @@
 
 					obj.plugins = obj.plugins?obj.plugins:[];
 
-					this.plugins = this.plugins?this.plugins:[];
-
-					this.plugins = _q.merge(this.plugins, obj.plugins);
-
 					if(!_ns_class.config.plugin&&!_ns_class.config.core){
+
+						this.plugins = this.plugins?this.plugins:[];
+
+						this.plugins = _q.merge(this.plugins, obj.plugins);
 
 						this.plugins = _q.merge(this.plugins,me.config.extendPlugins);
 						var _ary_result = [];
@@ -421,19 +450,12 @@
 					},
 					cls:_jsb_cls
 				};
-				// // 继承Class类基本属性
 
 				return me.data.clss[name];
 
 			};
 
 			me.cls.prototype = {
-
-				extend: '',
-
-				_ary_extend: [],
-
-				_ary_plugin: [],
 
 				_plugin_init:function(jsb_cls){
 
@@ -443,26 +465,32 @@
 
 					if(_ary_plugin){
 
+						var _ary_cls_plug = this._ary_plugin;
+
 						for (var i = 0; i < _ary_plugin.length; i++) {
 							
 							me._check_class(_ary_plugin[i]);
 
 							_ns_plugin = me._get_class(_ary_plugin[i])["cls"].prototype;
 
-							this._ary_plugin.push(_ary_plugin[i]);
+							_ary_cls_plug.push(_ary_plugin[i]);
 
 							this._plugin(_ns_plugin);
 
 						};
 
-						for (var i = 0; i < this._ary_plugin.length; i++) {
+						for (var i = 0; i < _ary_cls_plug.length; i++) {
 							
-							_ns_plugin = me._get_class(this._ary_plugin[i])["cls"].prototype;
+							var _obj_plug =  me._get_plugin(_ary_cls_plug[i]);
+
+							_ns_plugin = me._get_class(_ary_cls_plug[i])["cls"].prototype;
 							
-							_q.extend(
-								jsb_cls.prototype, 
-								me._get_plugin(this._ary_plugin[i]).getPrototype()
-							);
+							if(_obj_plug.getPrototype){
+								_q.extend(
+									jsb_cls.prototype, 
+									_obj_plug.getPrototype()
+								);
+							}
 
 							_ns_plugin.initialize.call(this);
 
@@ -643,11 +671,13 @@
 				if (_str_basename.substr(_str_basename.length,-_str_ext.length) != _str_ext) {
 					
 					_str_url  = url.replace(/\./g, '/');
-
-					if(!url.match(/^jsborn\./g)){
-						_str_url  = JSB.config.importSetup.source + _str_url + _str_ext;
-					}else{
+					
+					if(url.match(/^jsborn\./g)){
 						_str_url  = JSB.config.importSetup.library + _str_url + _str_ext;
+					}else if(url.match(/^jquery\./g)){
+						_str_url  = JSB.config.importSetup.jquery + _str_url + _str_ext;
+					}else{
+						_str_url  = JSB.config.importSetup.source + _str_url + _str_ext;
 					}
 					
 				}else {

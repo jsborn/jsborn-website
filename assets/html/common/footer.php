@@ -1,8 +1,16 @@
 <footer id="jsb-footer" class="jsb-footer">
 	<div class="container">
 		<p>
-			Designed and built  by
-			<a href="http://fb.com/tureki" target="_blank">@tureki</a>
+			<span>
+				Designed and built  by
+				<a href="https://twitter.com/tureki" target="_blank">@tureki</a>
+			</span>
+			<span>
+				<a 
+				title="Author: kah wai liew on Google+" 
+				rel="publisher" 
+				href="https://plus.google.com/115553313711775317354" target="_blank">Kah Wai Liew</a>
+			</div>
 		</p>
 		<p>
 			Code licensed under
@@ -24,7 +32,8 @@
 			console: true,
 			createImport: true,
 			importSetup: {
-				library: '<?php echo DIR_ROOT; ?>/assets/js/',
+				library: '<?php echo DIR_ROOT; ?>/assets/js/jsborn/',
+				jquery: '<?php echo DIR_ROOT; ?>/assets/js/jsborn/',
 				source: '<?php echo DIR_ROOT; ?>/assets/js/',
 				parserURL:function(url){
 					console.log(url);

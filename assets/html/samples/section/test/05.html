@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>JSborn::Test-01</title>
+	<meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.css"></head>
+<body>
+	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="../../src/jsborn.js"></script>
+	<script type="text/javascript">
+
+		JSB.cls("org.jsborn.node", {
+
+			triggerCallback: function(str_event) {
+				//傳送事件給監聽此物件的物件
+				this.dispatchEvent(str_event, this);
+			},
+
+			initialize: function(options) {
+
+			}
+
+		})
+
+		JSB.cls("org.jsborn.instance", {
+
+			getNode: function() {
+
+				return this._ns_node;
+
+			},
+
+			initialize: function(options) {
+
+				var dd = this;
+				//建立物件node
+				dd._ns_node = JSB.create("org.jsborn.node");
+				//對物件node監聽事件
+				dd._ns_node.addEventListener("iamcallback", this._node_callback);
+				//你可以對物件監聽多個事件
+				dd._ns_node.addEventListener("multievent", this._node_multievent);
+
+			},
+			//接送物件Node的iamcallback事件
+			_node_callback: function(e, scope) {
+				console.log("_node_callback!");
+				//移除事件
+				scope.removeEventListener("iamcallback");
+			},
+			//接送物件Node的multievent事件
+			_node_multievent: function(e, scope) {
+				console.log("_node_multievent!");
+				//移除事件
+				scope.removeEventListener("multievent");
+			}
+
+		});
+
+		var _ns_instance = JSB.create("org.jsborn.instance");
+		_ns_instance.getNode().triggerCallback("iamcallback");
+		_ns_instance.getNode().triggerCallback("multievent");
+
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>JSborn::Test-01</title>
+	<meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.css"></head>
+<body>
+	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="../../src/jsborn.js"></script>
+	<script type="text/javascript">
+
+		JSB.setConfig({
+			imports: {
+				library: '../../src/',
+			}
+		});
+		
+		JSB.cls("org.jsborn.a", {
+			//載入channel物件
+			imports: ["jsborn.cores.channel"],
+
+			initialize: function(options) {
+				//讓此物件加入channel-01
+				JSB.core.channel.join('channel-01', this, function(e, data) {
+					console.log("i am org.jsborn.a :get channel-01 message!", data);
+				});
+
+			}
+
+		});
+
+		JSB.cls("org.jsborn.b", {
+			//載入channel物件
+			imports: ["jsborn.cores.channel"],
+
+			initialize: function(options) {
+				JSB.core.channel.join('channel-01', this, function(e, data) {
+					console.log("i am org.jsborn.b :get channel-01 message!", data);
+				});
+			}
+
+		});
+
+		JSB.cls("org.jsborn.c", {
+			//載入channel物件
+			imports: ["jsborn.cores.channel"],
+
+			initialize: function(options) {
+				//傳送資料給在channel-01的物件
+				JSB.core.channel.send('channel-01', 'SEND_DATA');
+
+				//讓此物件加入channel-02
+				JSB.core.channel.join('channel-02', this, function(e, data) {
+					console.log("i am org.jsborn.c :get channel-02 message!", data);
+				});
+			}
+
+		});
+
+		var _ns_a = JSB.create("org.jsborn.a");
+		var _ns_b = JSB.create("org.jsborn.b");
+		var _ns_c = JSB.create("org.jsborn.c");
+		//傳送資料給在channel-02的物件
+		JSB.core.channel.send('channel-02', 'YOUR_DATA');
+
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>JSborn::Test-01</title>
+	<meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.css"></head>
+<body>
+	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="../../src/jsborn.js"></script>
+	<h3>
+		name:
+		<span id="txt">hello</span>
+	</h3>
+
+	<button id="btn" class="btn btn-block btn-info">change name to helloworld!</button>
+	<button id="btn2" class="btn btn-block btn-warning">change name to hello</button>
+
+	<h3>
+		data add:
+		<span id="txt-data"></span>
+	</h3>
+
+	<button id="btn3" class="btn btn-block btn-warning">add data</button>
+
+	<h3>
+		data del:
+		<span id="txt-del"></span>
+	</h3>
+
+	<button id="btn4" class="btn btn-block btn-warning">del data</button>
+	<script type="text/javascript">
+
+		JSB.setConfig({
+			imports: {
+				library: '../../src/',
+			}
+		});
+		
+		JSB.cls("org.jsborn.model", {
+
+			plugins: ["jsborn.plugins.model"],
+
+			initialize: function(options) {
+
+				jQuery('#btn').on('click', {
+					scope: this
+				}, this._click_cb);
+
+				jQuery('#btn2').on('click', {
+					scope: this
+				}, this._click_cb2);
+
+				jQuery('#btn3').on('click', {
+					scope: this
+				}, this._click_cb3);
+
+				jQuery('#btn4').on('click', {
+					scope: this
+				}, this._click_cb4);
+
+				this.model.addModel("name-data", {
+					name: 'hello'
+				}).addEventListener("model-modify", this._modify, this);
+
+				this.model.getModel("name-data").addEventListener("model-add", this._add, this);
+
+				this.model.getModel("name-data").addEventListener("model-del", this._del, this);
+			},
+
+			_click_cb: function(e) {
+				var scope = e.data.scope;
+				var _obj_data = scope.model.getModel("name-data").getData();
+				_obj_data.name = 'hellowrold!';
+				scope.model.setModel("name-data", _obj_data);
+			},
+
+			_click_cb2: function(e) {
+				var scope = e.data.scope;
+				var _obj_data = scope.model.getModel("name-data").getData();
+				_obj_data.name = 'hello';
+				scope.model.setModel("name-data", _obj_data);
+			},
+			_click_cb3: function(e) {
+				var scope = e.data.scope;
+				var _obj_data = scope.model.getModel("name-data").getData();
+				_obj_data.age = 15;
+				scope.model.setModel("name-data", _obj_data);
+			},
+			_click_cb4: function(e) {
+				var scope = e.data.scope;
+				var _obj_data = scope.model.getModel("name-data").getData();
+				delete _obj_data.name;
+				scope.model.setModel("name-data", _obj_data);
+			},
+			_add: function(e, scope, data) {
+				console.log("add", data);
+				for (key in data) {
+					jQuery('#txt-data').html(key + ":" + data[key]);
+				}
+			},
+			_del: function(e, scope, data) {
+				console.log("delete", data);
+				for (key in data) {
+					jQuery('#txt-del').html(key);
+				}
+			},
+			_modify: function(e, scope, data) {
+				console.log("_modify", data);
+				jQuery('#txt').html(data.name);
+			}
+
+		});
+
+		JSB.create("org.jsborn.model");
+
+	</script>
+
+</body>
+</html>

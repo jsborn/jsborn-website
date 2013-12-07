@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>JSborn::Test-01</title>
+	<meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.css"></head>
+<body>
+	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="../../src/jsborn.js"></script>
+	<script type="text/javascript">
+
+		JSB.cls("org.jsborn.parent", {
+
+			abstr: true,
+
+			myname: "i am parent",
+
+			parentMethod: function() {
+
+				console.log("call::parentMethod!");
+
+			},
+
+			initialize: function(options) {
+
+				console.log("org.jsborn.parent initialize!");
+
+			}
+
+		});
+
+		JSB.cls("org.jsborn.node", {
+			//繼承物件org.jsborn.parent
+			extend: "org.jsborn.parent",
+
+			single: true,
+
+			initialize: function(options) {
+
+				console.log("org.jsborn.node initialize!");
+
+			}
+
+		});
+
+		var _ns_node = JSB.create("org.jsborn.node");
+		_ns_node.parentMethod();
+		console.log(_ns_node.myname);
+
+		JSB.cls("org.jsborn.node2", {
+			//繼承物件org.jsborn.parent
+			extend: "org.jsborn.parent",
+
+			single: true,
+
+			initialize: function(options) {
+
+				this.SUPER();
+
+				console.log("org.jsborn.node initialize!");
+
+			}
+
+		});
+
+		var _ns_node = JSB.create("org.jsborn.node2");
+		_ns_node.parentMethod();
+		console.log(_ns_node.myname);
+
+	</script>
+
+</body>
+</html>

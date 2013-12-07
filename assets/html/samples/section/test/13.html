@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>JSborn::Test-01</title>
+	<meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.css"></head>
+<body>
+	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="../../src/jsborn.js"></script>
+	<div id="controller-test">
+		<div jsb-event="click:_click_cb">please click me!</div>
+		<div jsb-cls="org.jsborn.controller.node">
+			<div jsb-event="click:_node_cb">please click node!</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+
+		JSB.setConfig({
+			imports: {
+				library: '../../src/',
+			}
+		});
+		
+		JSB.cls("org.jsborn.controller", {
+
+			plugins: ["jsborn.plugins.dom"],
+
+			initialize: function(options) {
+
+				this.dom.setRoot("#controller-test");
+				//監聽如果註冊了class時的callback
+				this.dom.addEventListener("controller-create", function(e, scope, element) {
+					//這個scope指的是 org.jsborn.controller.node
+					scope.dom.setRoot(element);
+
+					scope.dom.registerEvent();
+
+				});
+
+				this.dom.registerEvent();
+
+				this.dom.registerClass();
+
+			},
+
+			_click_cb: function() {
+
+				alert("_click_cb");
+
+			}
+
+		})
+
+		JSB.cls("org.jsborn.controller.node", {
+
+			plugins: ["jsborn.plugins.dom"],
+
+			initialize: function(options) {},
+
+			_node_cb: function(e) {
+
+				var scope = e.data.scope;
+
+				alert("_node_cb");
+
+			}
+
+		})
+
+		JSB.create("org.jsborn.controller");
+
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>JSborn::Test-01</title>
+	<meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.css"></head>
+<body>
+	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="../../src/jsborn.js"></script>
+	<script type="text/javascript">
+
+		JSB.cls("define.your.classname", {
+			//define get
+			getData: function() {
+				return this.data;
+			},
+			//define set
+			setData: function(data) {
+				this.data = data;
+			},
+
+			initialize: function() {
+				console.log("define.your.classname initialize!");
+			}
+
+		})
+		//create class
+		var _cls = JSB.create("define.your.classname");
+		//set data
+		_cls.setData("hello");
+		//get data
+		console.log("_cls.getData():" + _cls.getData());
+
+	</script>
+
+</body>
+</html>

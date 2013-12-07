@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>JSborn::Test-01</title>
+	<meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.css"></head>
+<body>
+	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="../../src/jsborn.js"></script>
+	<div id="controller-test">
+		<div>
+			your key in result :
+			<span jsb-data="key:name" ></span>
+		</div>
+		<input jsb-event="keyup:_keyup_cb" />
+	</div>
+	<div id="controller-test2">
+		<div>
+			your key in result :
+			<span jsb-data="key:name" ></span>
+		</div>
+		<input jsb-event="keyup:_keyup_cb" />
+	</div>
+	<script type="text/javascript">
+
+		JSB.setConfig({
+			imports: {
+				library: '../../src/',
+			}
+		});
+		
+		JSB.cls("org.jsborn.controller", {
+			//載入controller插件
+			plugins: ["jsborn.plugins.dom"],
+
+			initialize: function(id) {
+
+				this.dom.setRoot(id);
+
+				this.dom.addModel("key", {
+					name: ""
+				});
+
+				this.dom.registerEvent();
+
+				this.dom.registerData();
+
+			},
+
+			_keyup_cb: function(e) {
+				//因為回傳的是jQuery物件，所以可以從裡面取回此物件的作用域
+				var me = e.data.scope;
+
+				me.dom.setModel("key", {
+					name: "id" + me.dom.getRoot() + "-" + e.keyCode
+				});
+
+			}
+
+		});
+
+		JSB.create("org.jsborn.controller",'#controller-test');
+		JSB.create("org.jsborn.controller",'#controller-test2');
+
+	</script>
+
+</body>
+</html>

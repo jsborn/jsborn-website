@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>JSborn::Test-01</title>
+	<meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.css"></head>
+<body>
+	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="../../src/jsborn.js"></script>
+	<div id="controller-test">
+		<div jsb-event="click:_click_cb">
+			please click me!
+		</div>
+		<input jsb-event="keyup:_keyup_cb"/>
+	</div>
+	<script type="text/javascript">
+
+		JSB.setConfig({
+			imports: {
+				library: '../../src/',
+			}
+		});
+		
+		JSB.cls("org.jsborn.controller", {
+			//載入controller插件
+			plugins: ["jsborn.plugins.dom"],
+
+			initialize: function(options) {
+
+				var dd = this;
+				//對物件鎖定要控制的DOM
+				this.dom.setRoot("#controller-test");
+				//一旦設定Root後即可對DOM自動綁定事件
+				this.dom.registerEvent();
+
+			},
+			//這裡的"_click_cb"是對應HTML裡的jsb-event="click:_click_cb"
+			_click_cb: function() {
+
+				alert("_click_cb");
+
+			},
+
+			_keyup_cb: function(e) {
+
+				alert("_keyup_cb:" + e.keyCode);
+
+			}
+
+		})
+
+		var _ns_a = JSB.create("org.jsborn.controller");
+
+	</script>
+
+</body>
+</html>

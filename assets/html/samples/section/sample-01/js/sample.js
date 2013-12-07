@@ -1,7 +1,7 @@
 JSB.cls("js.sample", {
 	
 	imports:[
-		"jsborn.core.channel"
+		"jsborn.cores.channel"
 	],
 	//validate create panel
 	validate:function(){
@@ -20,13 +20,13 @@ JSB.cls("js.sample", {
 
 		me._cls_create_pannel = JSB.create("js.sample.create-pannel");
 
-		JSB.addListener("create",function(e,cls_jsb){
+		JSB.addEventListener("create",function(e,cls_jsb){
 
 			JSB.core.channel.send('event-pannel',cls_jsb.className+" create!");
 
 		});
 
-		JSB.addListener("destroy",function(e,cls_jsb){
+		JSB.addEventListener("destroy",function(e,cls_jsb){
 
 			JSB.core.channel.send('event-pannel',cls_jsb.className+" destroy!");
 
@@ -39,18 +39,19 @@ JSB.cls("js.sample", {
 JSB.cls("js.sample.event-pannel", {
 
 	plugins:[
-		"jsborn.plugin.controller"
+		"jsborn.plugins.dom"
 	],
+
 
 	initialize: function(options) {
 
 		var me = this;
-
-		me.setRoot("#event-pannel");
+		
+		me.dom.setRoot("#event-pannel");
 
 		JSB.core.channel.join('event-pannel', this, function (e, data) {
 
-			me.select("message").append('<div><p>'+data+'</p></div>');
+			me.dom.select("#message").append('<div><p>'+data+'</p></div>');
 
 		});
 
@@ -61,16 +62,16 @@ JSB.cls("js.sample.event-pannel", {
 JSB.cls("js.sample.create-pannel", {
 
 	plugins:[
-		"jsborn.plugin.controller"
+		"jsborn.plugins.dom"
 	],
 
 	validate:function(){
 
 		var me = this;
 
-		me.registerEvent();
+		me.dom.registerEvent();
 
-		me.registerData();
+		me.dom.registerData();
 
 	},
 
@@ -96,10 +97,10 @@ JSB.cls("js.sample.create-pannel", {
 
 		var me = this;
 
-		me.setRoot("#create-pannel");
+		me.dom.setRoot("#create-pannel");
 
 		me.setData(
-			me.addModel("nodedata",{
+			me.dom.addModel("nodedata",{
 				node_id:0,
 				node_count:0,
 			})
@@ -111,13 +112,13 @@ JSB.cls("js.sample.create-pannel", {
 
 		var me = e.data.scope;
 		
-		var _str_val = me.select().find("input[name='name']").val();
+		var _str_val = me.dom.select().find("input[name='name']").val();
 
 		var _cls_model = me.getData();
 
 		if(jQuery.isEmptyObject(_str_val)){
 
-			me.select().popover({
+			me.dom.select().popover({
 				placement:'top',
 				content:"請輸入名字"
 			})
@@ -133,17 +134,17 @@ JSB.cls("js.sample.create-pannel", {
 			name:_str_val
 		});
 
-		_cls_node.addListener("node-validate",function(e,scope,data){
+		_cls_node.addEventListener("node-validate",function(e,scope,data){
 
-			me.select().find('#container').append(data);
+			me.dom.select().find('#container').append(data);
 
 		});
 
-		_cls_node.addListener("destroy",function(e,scope,data){
+		_cls_node.addEventListener("destroy",function(e,scope,data){
 
 			var _cls_model = me.getData();
 			_cls_model.node_count--;
-			me.setModel("nodedata",_cls_model);
+			me.dom.setModel("nodedata",_cls_model);
 
 		});
 
@@ -152,8 +153,8 @@ JSB.cls("js.sample.create-pannel", {
 		_cls_model.node_id++;
 		_cls_model.node_count++;
 
-		me.setModel("nodedata",_cls_model);
-
+		me.dom.setModel("nodedata",_cls_model);
+		console.timeEnd("XD");
 	}
 
 });
@@ -161,7 +162,7 @@ JSB.cls("js.sample.create-pannel", {
 JSB.cls("js.sample.node", {
 
 	plugins:[
-		"jsborn.plugin.controller"
+		"jsborn.plugins.dom"
 	],
 
 	validate:function(){
@@ -176,11 +177,11 @@ JSB.cls("js.sample.node", {
 
 		me.dispatchEvent("node-validate",_str_tmp);
 
-		me.setRoot("#jsb-node-"+me.getData().id);
+		me.dom.setRoot("#jsb-node-"+me.getData().id);
 
-		me.select().find('#delete').on("click",{scope:me},me._delete_click);
+		me.dom.select().find('#delete').on("click",{scope:me},me._delete_click);
 
-		me.select().find('#info').on("click",{scope:me},me._info_click);
+		me.dom.select().find('#info').on("click",{scope:me},me._info_click);
 
 	},
 
@@ -217,7 +218,7 @@ JSB.cls("js.sample.node", {
 
 		var scope = e.data.scope;
 
-		scope.select().remove();
+		scope.dom.select().remove();
 
 		scope.destroy();
 
@@ -237,8 +238,6 @@ JSB.cls("js.sample.node", {
 		_str_info += "\ntime:"+scope.getData().time;
 
 		JSB.core.channel.send('event-pannel',scope.className+":id = "+scope.getData().id+":get Info");
-
-		alert(_str_info);
 
 	}
 

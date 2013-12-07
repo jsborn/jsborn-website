@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>JSborn::Test-01</title>
+	<meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.css"></head>
+<body>
+	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="../../src/jsborn.js"></script>
+	<script type="text/javascript">
+
+		JSB.setConfig({
+			imports: {
+				library: '../../src/',
+			}
+		});
+		
+		JSB.cls("org.jsborn.d", {
+			//載入channel物件
+			imports: ["jsborn.cores.model"],
+
+			initialize: function(options) {
+
+				var _obj_original = {
+					"name": "original",
+					"data": {
+						"age": 20
+					}
+				}
+				//複製_obj_original
+				var _obj_change = jQuery.extend(true, {}, _obj_original, "modify");
+				//修改資料
+				_obj_change.name = "change";
+				_obj_change.data.age = "21";
+				//使用model檢查改變過什麼
+				var _obj_diff = JSB.core.model.getObjtDiff(_obj_original, _obj_change, "modify");
+				//如果有改變
+				if (!jQuery.isEmptyObject(_obj_diff)) {
+					//使用model取得改變的數值
+					var _str_name = JSB.core.model.getObjKey(_obj_diff, "name");
+					var _str_age = JSB.core.model.getObjKey(_obj_diff, "data.age");
+
+					console.log("name:" + _str_name);
+
+					console.log("age:" + _str_age);
+
+				}
+
+			}
+
+		});
+
+		var _ns_d = JSB.create("org.jsborn.d");
+
+	</script>
+
+</body>
+</html>

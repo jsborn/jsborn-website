@@ -31,9 +31,8 @@
 		JSB.setConfig({
 			console: true,
 			createImport: true,
-			importSetup: {
+			imports: {
 				library: '<?php echo DIR_ROOT; ?>/assets/js/jsborn/',
-				jquery: '<?php echo DIR_ROOT; ?>/assets/js/jsborn/',
 				source: '<?php echo DIR_ROOT; ?>/assets/js/',
 				parserURL:function(url){
 					console.log(url);
@@ -42,12 +41,12 @@
 			}
 		});
 
-		JSB.addListener('create', function() {
+		JSB.addEventListener('create', function() {
 			// console.log(arguments);
 			// console.log("create");
 		});
 
-		JSB.addListener('destroy', function() {
+		JSB.addEventListener('destroy', function() {
 			// console.log(arguments);
 			// console.log("destroy");
 		});

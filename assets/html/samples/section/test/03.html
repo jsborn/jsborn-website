@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>JSborn::Test-01</title>
+	<meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.css"></head>
+<body>
+	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="../../src/jsborn.js"></script>
+	<script type="text/javascript">
+
+		JSB.cls("org.jsborn.instance", {
+
+			helloWorld: function() {
+				console.log("call:helloWorld");
+				this._call_private();
+			},
+
+			setData: function(str_data) {
+				this.str_data = str_data;
+			},
+
+			getData: function() {
+				return this.str_data;
+			},
+
+			initialize: function(options) {
+
+			},
+
+			_call_private: function() {
+				console.log("call:_call_private");
+			}
+
+		});
+
+		var _ns_instance = JSB.create("org.jsborn.instance");
+
+		_ns_instance.helloWorld();
+
+		console.log(_ns_instance.getData());
+
+		_ns_instance.setData("set data to class");
+		
+		console.log(_ns_instance.getData());
+
+	</script>
+
+</body>
+</html>
